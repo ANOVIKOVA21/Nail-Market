@@ -1,0 +1,97 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        "{background-color: #f4f4f4;}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391"
+      }
+    },
+    "policy_text_zUhTf9": {
+      "type": "policy-text",
+      "blocks": {
+        "anchor_section_EQm4PY": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "introduction-section",
+            "link_text": "Introduction",
+            "heading": "Introduction",
+            "content": "<p>We want you to love every product you purchase from us. If something isn’t right, we’ll do our best to make it right. Please read our return policy carefully before requesting a return.<\/p>"
+          }
+        },
+        "anchor_section_DfLtDF": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "eligibility",
+            "link_text": "1. Eligibility for Returns",
+            "heading": "1. Eligibility for Returns",
+            "content": "<p>You may request a return within 14 days of receiving your order.<\/p><p>Items must be unused, unopened, and in their original packaging.<\/p><p>Due to hygiene and safety regulations, used or opened nail products (such as gel polishes, top\/base coats, liquids, brushes, files, and nail tools) cannot be returned.<\/p><p>Custom or personalized items are non-refundable unless defective.<\/p>"
+          }
+        },
+        "anchor_section_wdFKTa": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "non-returnable",
+            "link_text": "2. Non-Returnable Items",
+            "heading": "2. Non-Returnable Items",
+            "content": "<ul><li>Opened or used nail products<\/li><li>Clearance or final sale items<\/li><li>Gift cards<\/li><li>Items showing signs of wear or use<\/li><\/ul>"
+          }
+        },
+        "anchor_section_UQkzwW": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "damaged-or-incorrect",
+            "link_text": "3.Damaged or Incorrect Items",
+            "heading": "3.Damaged or Incorrect Items",
+            "content": "<p>If your order arrives damaged or incorrect, please contact us at [email@example.com] within 48 hours of delivery. Include:<\/p><ul><li>Your order number<\/li><li>A description of the issue<\/li><li>Clear photos of the item and packaging<\/li><\/ul><p>We will arrange a replacement or a refund, depending on the case.<\/p>"
+          }
+        },
+        "anchor_section_WC6MzB": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "return-process",
+            "link_text": "4. Return Process",
+            "heading": "4. Return Process",
+            "content": "<ol><li>Email us at nailmarketusa.info@gmail.com with your order number and reason for return.<\/li><li> Wait for return authorization and shipping instructions.<\/li><li>Ship the item back using a trackable shipping method. The customer is responsible for return shipping unless the return is due to our error.<\/li><\/ol>"
+          }
+        },
+        "anchor_section_QFEFTg": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "refunds",
+            "link_text": "5. Refunds",
+            "heading": "5. Refunds",
+            "content": "<p>Once we receive and inspect your return, we will process your refund to the original payment method within 3–7 business days.<\/p><p>Shipping costs are non-refundable, unless the return is due to our mistake.<\/p><p><strong>Our priority is your satisfaction. If you have any concerns or questions about a product or your order, feel free to reach out — we're happy to help!<\/strong><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "anchor_section_EQm4PY",
+        "anchor_section_DfLtDF",
+        "anchor_section_wdFKTa",
+        "anchor_section_UQkzwW",
+        "anchor_section_WC6MzB",
+        "anchor_section_QFEFTg"
+      ],
+      "name": "Anchor Navigation",
+      "settings": {
+        "nav_title": "RETURN POLICY",
+        "background_color": "#f4f4f4",
+        "heading_color": "#333333",
+        "link_color": "#666666",
+        "active_color": "#000000",
+        "content_width": 1200,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "policy_text_zUhTf9"
+  ]
+}

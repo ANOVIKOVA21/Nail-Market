@@ -1,0 +1,357 @@
+<script src="{{ 'returns.js' | asset_url }}" defer></script>
+{% style %} 
+    fieldset {
+      border: none;
+      margin-bottom: 30px;
+    }
+    .return-items {
+      list-style: none;
+      padding: 0;
+      gap: 2rem;
+    }
+
+    .return-form__header {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .return-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    legend {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    .return-reasons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+      gap: 20px;
+    }
+
+    .return-reasons h4 {
+      margin: 16px 0 5px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .return-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.6rem;
+    }
+
+    input[type="radio"] {
+      border-radius: 5rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      z-index: 0;
+      accent-color: #444444;
+    }
+
+    .return-text-input {
+      background-color: transparent;
+      font-size: inherit;
+      font-family: inherit;
+      border: none;
+      border-bottom: 1px solid #444444;
+      position: relative;
+      display: block;
+      width: 100%;
+    }
+
+    .comment-block {
+      max-width: 40rem;
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    label.return-item__label--data {
+      display: flex;
+      flex-direction: row;
+      gap: 0.4rem;
+      justify-content: start;
+      align-items: center;
+    }
+
+    label.return-item__label--data input[type="checkbox"] {
+      flex-shrink: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      background-color: white;
+      border: 1px solid #888888;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* Checked state background */
+    label.return-item__label--data input[type="checkbox"]:checked {
+      background-color: #444444;
+      border-color: transparent;
+    }
+
+    /* Checkmark (appears only when checked) */
+    label.return-item__label--data input[type="checkbox"]::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 16px;
+      height: 16px;
+      background-color: #F4F4F4;
+      clip-path: polygon(
+        75% 28%, 45% 60%, 32% 47%, 
+        25% 54%, 45% 73%, 80% 36%
+      );
+      transform: scale(0);
+      transition: transform 0.2s ease;
+    }
+
+    /* Show the checkmark on checked */
+    label.return-item__label--data input[type="checkbox"]:checked::after {
+      transform: scale(1);
+    }
+
+    label.return-item__label--data input[type="checkbox"]:checked {
+      color: #444;
+    }
+
+    @media screen and (max-width: 749px) {
+      .return-reasons {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .return-item {
+        flex-direction: column;
+        align-items: start;
+        gap: 1.5rem;
+      }
+
+      .quantity__flex--return {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .quantity__flex--return>span {
+        margin-left: auto;
+      }
+    }
+{% endstyle %}
+
+<div id="return-form" class="page-width" style="display: none;">
+  <form method="post" action="/apps/api/returns" class="return-form">
+    <div class="return-form__header">
+      <div class="return-form__back-button">
+        {{- 'icon-left-arrow.svg' | inline_asset_content -}}
+      </div>
+      <h1 class="customer__title">{{ 'customer.return.title' | t }}</h1>
+    </div>
+    <p class="order__number">Order <span id="return-order-name"></span> from <span id="return-order-date"></span></p>
+
+    <!-- 1. SELECT THE ITEM FOR RETURN -->
+    <fieldset>
+      <legend><strong>1. SELECT THE ITEM FOR RETURN</strong></legend>
+      <ul class="return-items" id="return-items-list">
+        <!-- Items will be populated by JavaScript -->
+      </ul>
+    </fieldset>
+
+    <!-- 2. SPECIFY THE REASON FOR RETURN -->
+    <fieldset>
+      <legend><strong>2. SPECIFY THE REASON FOR RETURN</strong></legend>
+      <div class="return-reasons">
+        <div>
+          <h4>Product Issues</h4>
+          <label><input type="radio" name="reason" value="DEFECTIVE"> Damaged or defective</label>
+          <label><input type="radio" name="reason" value="NOT_AS_DESCRIBED"> Item not as described</label>
+          <label><input type="radio" name="reason" value="UNKNOWN"> Unknown</label>
+        </div>
+        <div>
+          <h4>Style & Fit</h4>
+          <label><input type="radio" name="reason" value="COLOR"> Didn't like the color</label>
+          <label><input type="radio" name="reason" value="STYLE"> Didn't like the style</label>
+          <label><input type="radio" name="reason" value="SIZE_TOO_SMALL"> Size was too small</label>
+          <label><input type="radio" name="reason" value="SIZE_TOO_LARGE"> Size was too large</label>
+        </div>
+        <div>
+          <h4>Delivery Issues</h4>
+          <label><input type="radio" name="reason" value="WRONG_ITEM"> Received the wrong item</label>
+        </div>
+        <div>
+          <h4>Change of Mind</h4>
+          <label><input type="radio" name="reason" value="UNWANTED"> Customer changed their mind</label>
+        </div>
+        <div>
+          <h4>Other</h4>
+          <label>
+            <input type="radio" name="reason" value="OTHER"> Other
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+
+    <!-- 3. COMMENT -->
+    <div class="comment-block">
+      <fieldset>
+        <label for="comment"><strong>3. YOUR COMMENT</strong></label>
+        <input class="return-text-input" name="comment" id="comment" placeholder="Add comment...">
+      </fieldset>
+    </div>
+
+    <!-- Hidden order ID field -->
+    <input type="hidden" name="order_id" id="return-order-id">
+
+    <!-- Submit -->
+    <div style="text-align: center; margin-top: 1.5rem;">
+      <button type="submit" class="button button-dark">SUBMIT REQUEST</button>
+    </div>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle return button clicks
+  document.querySelectorAll('.order-actions .button-bordered').forEach(button => {
+    button.addEventListener('click', function() {
+      // Hide the orders list and show the return form
+      document.querySelector('.active .tab-content-container').style.display = 'none';
+      document.getElementById('return-form').style.display = 'block';
+      
+      // Get the order details from the parent accordion
+      const orderAccordion = this.closest('.order-accordion__details').parentElement.parentElement;
+      const orderTitle = orderAccordion.querySelector('.order-accordion__title');
+      const orderDate = `${orderAccordion.dataset.orderDate}-${orderAccordion.dataset.orderMonth}-${orderAccordion.dataset.orderYear}`;
+      const orderName = orderTitle.querySelector('strong').textContent;
+      
+      console.log(orderAccordion);
+
+      // Set the order info in the form
+      document.getElementById('return-order-name').textContent = orderName;
+      document.getElementById('return-order-date').textContent = orderDate;
+      
+      // Get the order ID from the data attributes or parse from order name
+      const orderId = orderAccordion.dataset.orderId;
+      document.getElementById('return-order-id').value = orderId;
+      
+      // Populate the line items
+      const itemsList = document.getElementById('return-items-list');
+      itemsList.innerHTML = '';
+      
+      const lineItems = orderAccordion.querySelectorAll('.order-item');
+      console.log()
+      lineItems.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.className = 'return-item';
+        
+        const itemId = item.dataset.lineItemId;
+        const itemImage = item.dataset.lineItemImage;
+        const itemTitle = item.querySelector('.order-item__title').textContent;
+        const itemQuantity = parseInt(item.dataset.lineItemQuantity);
+        const itemPrice = item.querySelector('.order-item__price').textContent;
+
+        console.log(item.dataset);
+        console.log(item);
+        
+        li.innerHTML = `
+          <label class="return-item__label--data">
+            <input type="checkbox" name="line_items[${index}][selected]" value="true">
+            ${itemImage ? `<img src="${itemImage}" alt="${itemTitle}" class="order-item__img" width="48" height="48">` : ''}
+            ${itemTitle}
+          </label>
+          <div style="display: flex; align-items: center;" class="quantity__flex--return">
+            ${itemQuantity > 1 ? `
+              <div class="quantity return-quantity-display" data-max="${itemQuantity}">
+                <button type="button" class="quantity__button minus" aria-label="Decrease quantity" disabled>
+                  <span class="svg-wrapper">
+                    {{- 'icon-minus.svg' | inline_asset_content -}}
+                  </span>
+                </button>
+                <input
+                  type="number"
+                  name="line_items[${index}][quantity]"
+                  value="1"
+                  min="1"
+                  max="${itemQuantity}"
+                  readonly
+                  style="width: 40px; text-align: center;"
+                  class="quantity__input"
+                >
+                <button type="button" class="quantity__button plus" aria-label="Increase quantity">
+                  <span class="svg-wrapper">
+                    {{- 'icon-plus.svg' | inline_asset_content -}}
+                  </span>
+                </button>
+              </div>
+            ` : `<input type="hidden" name="line_items[${index}][quantity]" value="1">`}
+            <span>${itemPrice}</span>
+          </div>
+          <input type="hidden" name="line_items[${index}][id]" value="${itemId}">
+        `;
+        
+        itemsList.appendChild(li);
+      });
+      
+      // Initialize quantity controls
+      initializeQuantityControls();
+      
+      // Scroll to top
+      window.scroll({ top: 0, behavior: 'smooth' });
+    });
+  });
+  
+  // Handle back button
+  document.querySelector('.return-form__back-button').addEventListener('click', function() {
+    document.getElementById('return-form').style.display = 'none';
+    document.querySelector('.active .tab-content-container').style.display = 'block';
+    window.scroll({ top: 0, behavior: 'smooth' });
+  });
+  
+  // Quantity control function
+  function initializeQuantityControls() {
+    document.querySelectorAll('.return-form .quantity').forEach(function (control) {
+      const input = control.querySelector('input[type="number"]');
+      const btnMinus = control.querySelector('.quantity__button.minus');
+      const btnPlus = control.querySelector('.quantity__button.plus');
+      const max = parseInt(control.dataset.max, 10);
+
+      function updateButtons() {
+        const val = parseInt(input.value, 10);
+        btnMinus.disabled = val <= 1;
+        btnPlus.disabled = val >= max;
+      }
+
+      btnMinus.addEventListener('click', () => {
+        let val = parseInt(input.value, 10);
+        if (val > 1) {
+          input.value = val - 1;
+          updateButtons();
+        }
+      });
+
+      btnPlus.addEventListener('click', () => {
+        let val = parseInt(input.value, 10);
+        if (val < max) {
+          input.value = val + 1;
+          updateButtons();
+        }
+      });
+
+      updateButtons();
+    });
+  }
+});
+</script>

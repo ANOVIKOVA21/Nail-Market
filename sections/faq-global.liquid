@@ -1,0 +1,349 @@
+{%- style -%}
+  .faq-section-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background_color }};
+  }
+  .faq-container {
+    max-width: {{ section.settings.content_width }}px;
+    margin: 0 auto;
+  }
+  
+  /* Top Navigation */
+  .faq-top-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid {{ section.settings.border_color }};
+    padding-bottom: 15px;
+  }
+  .faq-top-nav button {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: {{ section.settings.text_color }};
+    transition: all 0.3s ease;
+  }
+  .faq-top-nav button.active,
+  .faq-top-nav button:hover {
+    color: {{ section.settings.active_color }};
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  /* Search */
+  .faq-search {
+    margin-bottom: 30px;
+    position: relative;
+  }
+  .faq-search label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: {{ section.settings.text_color }};
+  }
+  .faq-search input {
+    width: 100%;
+    padding: 12px 15px 12px 35px;
+    border: 0;
+    border-bottom: 1px solid {{ section.settings.border_color }};
+    font-size: 16px;
+    background-color: {{ section.settings.background_color }};
+  }
+  .faq-search svg {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;
+  }
+  
+  /* FAQ Items */
+  .faq-items {
+    display: grid;
+    gap: 15px;
+  }
+  .faq-item {
+    border-bottom: 1px solid {{ section.settings.border_color }};
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .faq-item-header {
+    padding: 15px 20px;
+    background: {{ section.settings.item_header_bg }};
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: {{ section.settings.text_color }};
+  }
+  .faq-item-header .icon {
+    transition: transform 0.3s ease;
+  }
+  .faq-item.active .faq-item-header .icon {
+    transform: rotate(180deg);
+  }
+  .faq-item-content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  .faq-item.active .faq-item-content {
+    padding: 0 20px 20px;
+    max-height: 500px;
+  }
+  .faq-item-content p {
+    margin: 0;
+    color: {{ section.settings.text_color }};
+    opacity: 0.9;
+  }
+  
+  @media (max-width: 768px) {
+    .faq-top-nav {
+      gap: 8px;
+    }
+    .faq-top-nav button {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+  }
+
+  .faq-search {
+    margin-top: 0.8rem;
+  margin-bottom: 30px;
+  position: relative;
+}
+.faq-search label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: {{ section.settings.text_color }};
+}
+.faq-search input {
+  width: 100%;
+  padding: 12px 15px 12px 38px;
+  border: 0;
+  border-bottom: 1px solid {{ section.settings.border_color }};
+  font-size: 16px;
+  background-color: {{ section.settings.background_color }};
+  color: {{ section.settings.text_color }};
+}
+.faq-search .icon-search {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  stroke: {{ section.settings.text_color }};
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.faq-search-label {
+    font-weight: 700;
+}
+
+
+{%- endstyle -%}
+
+<div class="faq-section-{{ section.id }}">
+  <div class="page-width">
+    <!-- Search -->
+    <label for="faq-search-input" class="faq-search-label">SEARCH</label>
+    <div class="faq-search">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8" stroke-width="2"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/>
+        </svg>
+        <input type="text" placeholder="Enter search term" id="faq-search-input">
+    </div>
+
+    <!-- Top Navigation Buttons -->
+    <div class="faq-top-nav">
+      <button class="active" data-category="all">ALL</button>
+      {%- assign unique_categories = "" | split: "," -%}
+      {%- for faq_metaobject in page.metafields.custom.faq_list.value -%}
+        {%- unless unique_categories contains faq_metaobject.product_identifier -%}
+          {%- assign unique_categories = unique_categories | push: faq_metaobject.product_identifier -%}
+          <button data-category="{{ faq_metaobject.product_identifier | handle }}">{{ faq_metaobject.product_identifier }}</button>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+    
+    
+    <!-- FAQ Items -->
+    <div class="faq-items">
+      {%- if page.metafields.custom.faq_list -%}
+        {%- for faq_metaobject in page.metafields.custom.faq_list.value -%}
+          {%- for faq_element in faq_metaobject.faq_list.value -%}
+            <div class="faq-item" data-category="{{ faq_metaobject.product_identifier | handle }}" data-search="{{ faq_element.header | downcase }} {{ faq_element.description | strip_html | downcase }}">
+              <div class="faq-item-header">
+                <h3>{{ faq_element.header }}</h3>
+                <div class="icon">▼</div>
+              </div>
+              <div class="faq-item-content">
+                <div class="rte">{{ faq_element.description | metafield_text }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..6) -%}
+          <div class="faq-item" data-category="howtouseit">
+            <div class="faq-item-header">
+              <h3>HOW TO USE IT?</h3>
+              <div class="icon">▼</div>
+            </div>
+            <div class="faq-item-content">
+              <p>Prepare a nail plate. Apply a thin layer of any rubber base and dry it. Rock up the necessary amount of polygel and placed on the nail plate. Use a thick synthetic brush for application periodically using tip_diff./dicond 99% or special slip sculptural. Clare in a UV/LED lamp for 120 seconds.</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Toggle FAQ items
+  const faqItems = document.querySelectorAll('.faq-item-header');
+
+  const allButton = document.querySelector('.faq-top-nav button[data-category="all"]');
+  faqItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const parent = this.parentElement;
+      parent.classList.toggle('active');
+    });
+  });
+  
+  // Filter by category buttons
+  const categoryButtons = document.querySelectorAll('.faq-top-nav button');
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Update active button
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Filter items
+      const category = this.dataset.category;
+      const allItems = document.querySelectorAll('.faq-item');
+      
+      allItems.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+  
+  // Search functionality
+  const searchInput = document.getElementById('faq-search-input');
+  searchInput.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+    const allItems = document.querySelectorAll('.faq-item');
+
+    if (searchTerm !== '') {
+      categoryButtons.forEach(btn => btn.classList.remove('active'));
+      allButton.classList.add('active');
+    }
+    
+    allItems.forEach(item => {
+      const searchData = item.dataset.search;
+      
+      if (searchTerm === '' || searchData.includes(searchTerm)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e1e1e1"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Active Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "item_header_bg",
+      "label": "Item Header Background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 800,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "label": "Content Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

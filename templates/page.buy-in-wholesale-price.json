@@ -1,0 +1,221 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        "{display: none;}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_wTzC9f": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_RDey4c": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>BUY IN WHOLESALE PRICE<\/strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_NaUwWX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>In our store, you can purchase products at wholesale prices.<\/p>",
+            "text_style": "body"
+          }
+        },
+        "button_CQwkam": {
+          "type": "button",
+          "settings": {
+            "button_label": "Contact us",
+            "button_link": "#ContactForm-name",
+            "button_style_secondary": true
+          }
+        },
+        "button_WMWTM6": {
+          "type": "button",
+          "settings": {
+            "button_label": "Download the offer",
+            "button_link": "#ContactForm-name",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_RDey4c",
+        "text_NaUwWX",
+        "button_CQwkam",
+        "button_WMWTM6"
+      ],
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.image-with-text__media {-webkit-mask-image: linear-gradient( to top, transparent 0%, black 20%, black 80%, transparent 100% ), linear-gradient( to left, transparent 0%, black 20%, black 80%, transparent 100% ); -webkit-mask-composite: intersect; mask-image: linear-gradient( to top, transparent 0%, black 20%, black 80%, transparent 100% ), linear-gradient( to left, transparent 0%, black 20%, black 80%, transparent 100% ); mask-composite: intersect; }}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/7ffe550ab3aa664934a6834996049e478f0902a3.png",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "show_on_desktop": true,
+        "show_on_tablet": true,
+        "show_on_mobile": true,
+        "section_color_scheme": "scheme-8457b741-e8d0-4491-9978-4ca6cf84cdcf",
+        "color_scheme": "scheme-8457b741-e8d0-4491-9978-4ca6cf84cdcf",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_banner_mode": false
+      }
+    },
+    "rich_text_PriAUF": {
+      "type": "rich-text",
+      "blocks": {
+        "text_9L7PBM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Buying wholesale you get exclusive opportunity to purchase our premium products at wholesale prices. Join us and be part of a community that values quality and beauty!<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_9L7PBM"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "right",
+        "content_alignment": "right",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "statistics_populated_Y6PAz8": {
+      "type": "statistics-populated",
+      "blocks": {
+        "statistic_hNMnL9": {
+          "type": "statistic",
+          "settings": {
+            "number": "700",
+            "descriptor": "colors"
+          }
+        },
+        "statistic_i493Px": {
+          "type": "statistic",
+          "settings": {
+            "number": "30",
+            "descriptor": "collections"
+          }
+        },
+        "statistic_QwfVcP": {
+          "type": "statistic",
+          "settings": {
+            "number": "50",
+            "descriptor": "distributors"
+          }
+        }
+      },
+      "block_order": [
+        "statistic_hNMnL9",
+        "statistic_i493Px",
+        "statistic_QwfVcP"
+      ],
+      "name": "Statistics",
+      "settings": {
+        "background_color": "#f5f5f5",
+        "text_color": "#000000",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "number_size": 120,
+        "descriptor_size": 40
+      }
+    },
+    "advantage_list_bCwQJi": {
+      "type": "advantage-list",
+      "blocks": {
+        "advantage_e7jQcq": {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 40 40\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M31.6659 7.15488L7.1543 31.6665L8.3328 32.845L32.8444 8.33338L31.6659 7.15488Z\" fill=\"#444444\"><\/path>\n<path d=\"M5 11.6667C5 15.3483 7.985 18.3333 11.6667 18.3333C15.3483 18.3333 18.3333 15.3483 18.3333 11.6667C18.3333 7.985 15.3483 5 11.6667 5C7.985 5 5 7.985 5 11.6667ZM11.6667 6.66667C14.4233 6.66667 16.6667 8.91 16.6667 11.6667C16.6667 14.4233 14.4233 16.6667 11.6667 16.6667C8.91 16.6667 6.66667 14.4233 6.66667 11.6667C6.66667 8.91 8.91 6.66667 11.6667 6.66667Z\" fill=\"#444444\"><\/path>\n<path d=\"M28.3337 35C32.0153 35 35.0003 32.015 35.0003 28.3333C35.0003 24.6516 32.0153 21.6666 28.3337 21.6666C24.652 21.6666 21.667 24.6516 21.667 28.3333C21.667 32.015 24.652 35 28.3337 35ZM28.3337 23.3333C31.0903 23.3333 33.3337 25.5766 33.3337 28.3333C33.3337 31.09 31.0903 33.3333 28.3337 33.3333C25.577 33.3333 23.3337 31.09 23.3337 28.3333C23.3337 25.5766 25.577 23.3333 28.3337 23.3333Z\" fill=\"#444444\"><\/path>\n<\/svg>",
+            "text": "A flexible discount system based on order volume"
+          }
+        },
+        "advantage_zDkL39": {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 40 40\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M30.3583 17.3175C32.2425 16.1392 33.5 14.0525 33.5 11.6667C33.5 7.985 30.515 5 26.8333 5C23.1517 5 20.1667 7.985 20.1667 11.6667C20.1667 14.0525 21.4242 16.1392 23.3083 17.3175C22.1225 17.765 21.0467 18.4292 20.1242 19.265C19.7583 15.9292 16.9333 13.3333 13.5 13.3333C9.81833 13.3333 6.83333 16.3183 6.83333 20C6.83333 22.3858 8.09083 24.4725 9.975 25.6508C6.19333 27.0767 3.5 30.7183 3.5 35H23.5C23.5 31.5192 21.7217 28.4575 19.025 26.6667H36.8333C36.8333 22.385 34.14 18.7433 30.3583 17.3175ZM21.8333 11.6667C21.8333 8.91 24.0767 6.66667 26.8333 6.66667C29.59 6.66667 31.8333 8.91 31.8333 11.6667C31.8333 14.4233 29.59 16.6667 26.8333 16.6667C24.0767 16.6667 21.8333 14.4233 21.8333 11.6667ZM26.8333 18.3333C30.8575 18.3333 34.225 21.2008 34.9992 25H18.6675C18.76 24.5467 18.8917 24.1075 19.0542 23.6842C19.345 23.2467 19.58 22.7708 19.7617 22.2683C21.2358 19.9083 23.8525 18.3333 26.8333 18.3333ZM8.5 20C8.5 17.2433 10.7433 15 13.5 15C16.2567 15 18.5 17.2433 18.5 20C18.5 20.5425 18.41 21.0642 18.25 21.5533C17.9967 21.9783 17.7692 22.4192 17.5792 22.8808C16.6725 24.1608 15.1842 25 13.5 25C10.7433 25 8.5 22.7567 8.5 20ZM21.6658 33.3333H5.33417C6.10833 29.5342 9.47583 26.6667 13.5 26.6667C17.5242 26.6667 20.8917 29.5342 21.6658 33.3333Z\" fill=\"#444444\"><\/path>\n<\/svg>",
+            "text": "A personalized approach for each client"
+          }
+        },
+        "advantage_J9XteJ": {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 40 40\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M22.6667 3.37109H9.33333C7.5 3.37109 6 4.87109 6 6.70443V26.6669C6 28.5003 7.5 30.0003 9.33333 30.0003H13.5025L13.5842 30.5411C14.04 33.5586 16.5117 35.8336 19.3333 35.8336H35.1667V22.5003C35.1667 19.7044 34.0383 18.6294 33.9475 18.5528L28.4742 13.0794L26.2542 10.8594L26 10.6053V6.70443C26 4.87109 24.5 3.37109 22.6667 3.37109ZM24.3333 6.70443V9.11943C23.6867 8.72359 22.9458 8.50026 22.1667 8.50026C21.0517 8.50026 20.005 8.93359 19.2208 9.71776C18.435 10.4978 18.0017 11.5411 18 12.6561C17.9983 13.7753 18.4308 14.8261 19.2192 15.6144L22.01 18.4053L23.4275 19.8228L24.3333 20.7286V26.6669C24.3333 27.5861 23.5858 28.3336 22.6667 28.3336H16.8333V5.03776H22.6667C23.5858 5.03776 24.3333 5.78526 24.3333 6.70443ZM7.66667 26.6669V6.70443C7.66667 5.78526 8.41417 5.03776 9.33333 5.03776H11.8333V28.3336H9.33333C8.41417 28.3336 7.66667 27.5861 7.66667 26.6669ZM33.5 22.5003V34.1669H19.3333C17.3292 34.1669 15.5658 32.5011 15.2325 30.2928L15.1883 30.0003H22.6667C24.5 30.0003 26 28.5003 26 26.6669V22.3953L27.7667 24.1619L28.945 22.9836L26 20.0386V20.0003H25.9617L21.8333 15.8719L20.3975 14.4361C19.925 13.9636 19.6658 13.3328 19.6667 12.6586C19.6675 11.9903 19.9267 11.3653 20.3975 10.8978C21.3325 9.96359 22.9633 9.95859 23.9092 10.8769C23.9175 10.8853 23.9275 10.8903 23.9358 10.8978L28.5 15.4619L32.7892 19.7503C32.7958 19.7569 33.5 20.4836 33.5 22.5003Z\" fill=\"#444444\"><\/path>\n<\/svg>",
+            "text": "Convenient payment and delivery options"
+          }
+        },
+        "advantage_w4n6gy": {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 40 40\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M19.9997 3.33301C10.7947 3.33301 3.33301 10.7947 3.33301 19.9997C3.33301 29.2047 10.7947 36.6663 19.9997 36.6663C29.2047 36.6663 36.6663 29.2047 36.6663 19.9997C36.6663 10.7947 29.2047 3.33301 19.9997 3.33301ZM19.9997 34.9997C11.7288 34.9997 4.99967 28.2705 4.99967 19.9997C4.99967 11.7288 11.7288 4.99967 19.9997 4.99967C28.2705 4.99967 34.9997 11.7288 34.9997 19.9997C34.9997 28.2705 28.2705 34.9997 19.9997 34.9997Z\" fill=\"#444444\"><\/path>\n<path d=\"M20.8327 12.4998H19.166V20.8331H27.4993V19.1664H20.8327V12.4998Z\" fill=\"#444444\"><\/path>\n<\/svg>",
+            "text": "Fast processing and shipping of wholesale orders"
+          }
+        },
+        "advantage_JqpKCq": {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 40 40\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M6.5 7.66699V32.667H31.5V19.0462H30.6667H29.8333V31.0003H8.16667V9.33366H23.2067V8.50116V7.66699H6.5Z\" fill=\"#444444\"><\/path>\n<path d=\"M13.7555 16.2445L13.1663 16.8336L18.4105 22.0778L13.1663 16.8336L12.5771 17.4228L18.4105 23.2561L18.9996 22.667L19.5888 23.2561L27.8213 15.0236L33.7555 9.08947L32.5771 7.91113L26.8447 13.6436L18.9996 21.4886L13.7555 16.2445Z\" fill=\"#444444\"><\/path>\n<\/svg>",
+            "text": "A constantly updated product range in stock"
+          }
+        },
+        "advantage_pbFMtx": {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width=\"26\" height=\"26\" viewbox=\"0 0 40 40\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\">\n<path d=\"M19.9997 36.6663C19.9997 36.6663 36.6663 33.333 36.6663 8.33301L19.9997 3.33301L3.33301 8.33301C3.33301 34.9997 19.9997 36.6663 19.9997 36.6663ZM19.9997 5.07301L34.9855 9.56884C34.5055 30.3572 21.928 34.4522 19.9213 34.9722C17.9097 34.638 5.46051 31.6755 5.01134 9.56884L19.9997 5.07301Z\" fill=\"#444444\"><\/path>\n<path d=\"M26.178 14.9997L24.9996 13.8214L18.333 20.488L14.9996 17.1547L13.8213 18.333L18.333 22.8447L26.178 14.9997Z\" fill=\"#444444\"><\/path>\n<\/svg>",
+            "text": "Reliable partnership and long-term cooperation"
+          }
+        }
+      },
+      "block_order": [
+        "advantage_e7jQcq",
+        "advantage_zDkL39",
+        "advantage_J9XteJ",
+        "advantage_w4n6gy",
+        "advantage_JqpKCq",
+        "advantage_pbFMtx"
+      ],
+      "name": "Advantage list",
+      "settings": {
+        "heading": "WE OFFER:",
+        "heading_size": "h2",
+        "heading_alignment": "left",
+        "heading_color": "#444444",
+        "heading_spacing": 32,
+        "columns": 3,
+        "content_width": 1600,
+        "column_gap": 16,
+        "row_gap": 32,
+        "icon_size": 24,
+        "icon_color": "#444444",
+        "background_color": "#f4f4f4",
+        "text_color": "#444444",
+        "padding_top": 36,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_wTzC9f",
+    "rich_text_PriAUF",
+    "statistics_populated_Y6PAz8",
+    "advantage_list_bCwQJi"
+  ]
+}

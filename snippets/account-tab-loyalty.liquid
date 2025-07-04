@@ -1,0 +1,49 @@
+<section id="loyalty" class="tab-content">
+  <div class="tab-content-container">
+    <h1 class="customer__title">{{ 'customer.loyalty.title' | t }}</h1>
+    <div class="account__top-tabs">
+      <a href="#balance" class="top-tab-link active">
+        {{- 'customer.account.balance.title' | t -}}
+      </a>
+      <a href="#history" class="top-tab-link">
+        {{- 'customer.account.history.title' | t -}}
+      </a>
+    </div>
+    <div id="balance" class="top-tab-content active">
+      <div class="balance__container">
+        <div class="balance__box">
+          <h5 class="balance__title">{{- 'customer.account.balance.available_for_use' | t -}}</h5>
+          <span class="balance__counter">0</span>
+        </div>
+        <div class="balance__box">
+          <h5 class="balance__title">{{- 'customer.account.balance.pending_activation' | t -}}</h5>
+          <span class="balance__counter">0</span>
+        </div>
+        <div class="balance__box">
+          <h5 class="balance__title">{{- 'customer.account.balance.total' | t -}}</h5>
+          <span class="balance__counter">0</span>
+        </div>
+      </div>
+    </div>
+    <div id="history" class="top-tab-content">
+      <div class="history__container">
+        <div class="history__box">
+          <h5 class="history__title">{{- 'customer.account.history.credited' | t -}}</h5>
+          <span class="history__counter">0</span>
+        </div>
+        <div class="history__box">
+          <h5 class="history__title">{{- 'customer.account.history.debited' | t -}}</h5>
+          <span class="history__counter">0</span>
+        </div>
+        <div class="history__box">
+          <h5 class="history__title">{{- 'customer.account.history.activation' | t -}}</h5>
+          <span class="history__date">Date</span>
+        </div>
+        <div class="history__box">
+          <h5 class="history__title">{{- 'customer.account.history.expiration' | t -}}</h5>
+          <span class="history__date">Date</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

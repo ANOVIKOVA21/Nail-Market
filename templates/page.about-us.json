@@ -1,0 +1,223 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        "{background-color: #f4f4f4;}"
+      ],
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 20,
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391"
+      }
+    },
+    "image_with_text_7YTenp": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_Dm6Cmc": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>OUR STORY<\/strong>",
+            "heading_size": "h0"
+          }
+        },
+        "text_UtByr4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We stumbled upon the phenomenon of the European\/Russian style manicure while traveling through Eastern Europe. It still amazes us how a simple decision to pamper ourselves with a manicure, while traveling, evolved into our e-commerce venture.<\/p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Dm6Cmc",
+        "text_UtByr4"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/b39ed0a7408eb819a93f78de99c22697e55af600.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "show_on_desktop": true,
+        "show_on_tablet": true,
+        "show_on_mobile": true,
+        "section_color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "padding_top": 36,
+        "padding_bottom": 0,
+        "enable_banner_mode": false
+      }
+    },
+    "image_with_text_TFWKC8": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_cH3CYi": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>OUR MISSION<\/strong>",
+            "heading_size": "h0"
+          }
+        },
+        "text_6KV7X9": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our mission is to introduce the US nail community to a variety of European made nail products and the right techniques for using them in a European style manicure. All of our products are both high in quality and are environmentally friendly. We always strive to keep up with the trends and innovations in the global nail industry. Headquartered in New York City, Nail Mart USA aims to provide you with a shopping experience that is pleasant, convenient and affordable.<\/p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cH3CYi",
+        "text_6KV7X9"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/9d641a7bdcab3f05f8e69a4e0795d169179fbd7e.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "show_on_desktop": true,
+        "show_on_tablet": true,
+        "show_on_mobile": true,
+        "section_color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "padding_top": 36,
+        "padding_bottom": 0,
+        "enable_banner_mode": false
+      }
+    },
+    "image_with_text_L7daRw": {
+      "type": "image-with-text",
+      "custom_css": [
+        ".image-with-text__media-item {width: 100% !important;}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/934861db639eebcbc67fa5eadcf502db030de88b.jpg",
+        "height": "medium",
+        "desktop_image_width": "large",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "show_on_desktop": true,
+        "show_on_tablet": true,
+        "show_on_mobile": true,
+        "section_color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "padding_top": 36,
+        "padding_bottom": 0,
+        "enable_banner_mode": false
+      }
+    },
+    "rich_text_a7acgc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Pnxb6k": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>OUR PRODUCTS<\/strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_eFJX8p": {
+          "type": "text",
+          "settings": {
+            "text": "<p>All of our products are both high in quality and are environmentally friendly. We always strive to keep up with the trends and innovations in the global nail industry. Headquartered in New York City, Nail Mart USA aims to provide you with a shopping experience that is pleasant, convenient and affordable.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Pnxb6k",
+        "text_eFJX8p"
+      ],
+      "custom_css": [
+        "h2 {text-align: center;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 32
+      }
+    },
+    "image_double_row_9aYkaf": {
+      "type": "image-double-row",
+      "name": "Double image row",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/bd3fa254dc2914deea882a245a4d595eae3b2983.jpg",
+        "second_image": "shopify:\/\/shop_images\/1ea100776e3dc1549b1357edaf2df0f5d2bb57fa.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "show_on_desktop": true,
+        "show_on_tablet": true,
+        "show_on_mobile": true,
+        "section_color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_wcHefD": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "bestsellers",
+        "products_to_show": 8,
+        "title": "<strong>WE RECOMMEND<\/strong>",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "enable_desktop_slider": true,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_7YTenp",
+    "image_with_text_TFWKC8",
+    "image_with_text_L7daRw",
+    "rich_text_a7acgc",
+    "image_double_row_9aYkaf",
+    "featured_collection_wcHefD"
+  ]
+}

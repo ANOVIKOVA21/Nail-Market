@@ -1,0 +1,338 @@
+<script src="{{ 'customer.js' | asset_url }}" defer></script>
+<script src="{{ 'customer-contacts.js' |  asset_url }}" defer></script>
+<section id="account" class="tab-content active">
+  <div class="account__container tab-content-container">
+    <h1 class="customer__title">{{ 'customer.account.title' | t }}</h1>
+    <div class="account__top-tabs">
+      <a href="#personal" class="top-tab-link active">
+        {{- 'customer.account.personal_data.title' | t -}}
+      </a>
+      <a href="#shipping" class="top-tab-link">
+        {{- 'customer.account.shipping_address.title' | t -}}
+      </a>
+    </div>
+    <div id="personal" class="top-tab-content active">
+      <form id="customer-contacts-form">
+        <input type="hidden" name="form_type" value="customer">
+        <div class="form-grid account__info">
+          <label for="user_name" class="account__form-label">
+            {{- 'customer.account.personal_data.name' | t }}
+            <input
+              type="text"
+              id="user_name"
+              name="firstName"
+              class="account__form-input"
+              value="{{ customer.first_name }}"
+          ></label>
+
+          <label
+            for="user_last-name"
+            class="account__form-label"
+          >
+            {{- 'customer.account.personal_data.last_name' | t }}
+            <input
+              type="text"
+              id="user_last-name"
+              name="lastName"
+              class="account__form-input"
+              value="{{ customer.last_name }}"
+              placeholder="{{ 'customer.account.personal_data.enter_last_name' | t }}"
+          ></label>
+
+          <label for="user_phone" class="account__form-label">
+            {{- 'customer.account.personal_data.phone' | t }}
+            <input
+              type="tel"
+              id="user_phone"
+              name="phone"
+              class="account__form-input"
+              value="{{ customer.phone }}"
+              placeholder="{{ 'customer.account.personal_data.enter_phone' | t }}"
+          ></label>
+
+          <label for="user_email" class="account__form-label">
+            {{- 'customer.account.personal_data.email' | t }}
+            <input
+              type="email"
+              id="user_email"
+              disabled
+              class="account__form-input"
+              value="{{ customer.email }}"
+              placeholder="{{ 'customer.account.personal_data.enter_email' | t }}"
+          ></label>
+        </div>
+
+        <!--
+          h3 class="account__password-title">{{ 'customer.account.personal_data.password_title' | t }}</h3>
+          <div class="form-grid account__password">
+            <label class="account__form-label">
+              {{- 'customer.account.personal_data.password' | t }}
+              <input
+                type="password"
+                name="customer[password]"
+                class="account__form-input"
+                placeholder="{{ 'customer.account.personal_data.enter_password' | t }}"
+            ></label>
+
+            <label class="account__form-label">
+              {{- 'customer.account.personal_data.confirm_password' | t }}
+              <input
+                type="password"
+                name="customer[password_confirmation]"
+                class="account__form-input"
+                placeholder="{{ 'customer.account.personal_data.enter_password' | t }}"
+            ></label>
+          </div
+        -->
+        <div class="account__form-buttons">
+          <button type="button" class="button button-bordered" style="margin-left: 0;">
+            {{ 'customer.account.change' | t }}
+          </button>
+          <button type="submit" class="button button-dark">{{ 'customer.account.save' | t }}</button>
+        </div>
+      </form>
+    </div>
+    <div id="shipping" class="top-tab-content">
+      <ul role="list" class="account__addresses" data-customer-addresses>
+        {%- for address in customer.addresses -%}
+          {% comment %} {{ address | format_address }} {% endcomment %}
+          <li data-address>
+            <div id="EditAddress_{{ address.id }}">
+              {%- form 'customer_address', address -%}
+                <input type="hidden" name="form_type" value="customer">
+                <input type="hidden" name="return_to" value="/account#shipping">
+                <div class="form-grid account__info">
+                  <label for="AddressCountry_{{ form.id }}" class="account__form-label">
+                    {{- 'customer.account.shipping_address.country' | t }}
+                    <div class="account__form-select">
+                      <select
+                        id="AddressCountry_{{ form.id }}"
+                        name="address[country]"
+                        data-address-country-select
+                        data-default="{{ form.country }}"
+                        data-form-id="{{ form.id }}"
+                        autocomplete="country"
+                      >
+                        {{ form.country }}
+                        {{ all_country_option_tags }}
+                      </select>
+                      <span class="svg-wrapper">
+                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                      </span>
+                    </div>
+                  </label>
+
+                  <label
+                    for="AddressZip_{{ form.id }}"
+                    class="account__form-label"
+                  >
+                    {{- 'customer.account.shipping_address.zip_code' | t }}
+                    <input
+                      type="text"
+                      id="AddressZip_{{ form.id }}"
+                      name="address[zip]"
+                      class="account__form-input"
+                      value="{{ customer.addresses[0].zip }}"
+                      autocapitalize="characters"
+                      autocomplete="postal-code"
+                      placeholder="{{ 'customer.account.shipping_address.enter_zip_code' | t }}"
+                  ></label>
+
+                  <label for="AddressProvince_{{ form.id }}" class="account__form-label">
+                    {{- 'customer.account.shipping_address.state' | t }}
+                    <input
+                      type="text"
+                      id="AddressProvince_{{ form.id }}"
+                      name="address[province]"
+                      class="account__form-input"
+                      value="{{ form.province }}"
+                      placeholder="{{ 'customer.account.shipping_address.enter_state' | t }}"
+                    >
+                  </label>
+
+                  <label for="AddressCity_{{ form.id }}" class="account__form-label">
+                    {{- 'customer.account.shipping_address.city' | t }}
+                    <input
+                      type="text"
+                      id="AddressCity_{{ form.id }}"
+                      name="address[city]"
+                      class="account__form-input"
+                      value="{{ form.city }}"
+                      placeholder="{{ 'customer.account.shipping_address.enter_city' | t }}"
+                  ></label>
+
+                  <label for="AddressAddress1_{{ form.id }}" class="account__form-label">
+                    {{- 'customer.account.shipping_address.street_address' | t }}
+                    <input
+                      id="AddressAddress1_{{ form.id }}"
+                      type="text"
+                      name="address[address1]"
+                      value="{{ form.address1 }}"
+                      class="account__form-input"
+                      placeholder="{{ 'customer.account.shipping_address.street_address' | t }}"
+                  ></label>
+
+                  <label for="user-apt{{ form.id }}" class="account__form-label">
+                    {{- 'customer.account.shipping_address.apt' | t }}
+                    <input
+                      id="user-apt{{ form.id }}"
+                      type="text"
+                      name="address[address2]"
+                      value="{{ form.address2 }}"
+                      class="account__form-input"
+                      placeholder="{{ 'customer.account.shipping_address.apt' | t }}"
+                  ></label>
+                </div>
+
+                <div class="account__form-buttons">
+                  <button
+                    type="submit"
+                    id="EditFormButton_{{ address.id }}"
+                    aria-label="{{ 'customer.addresses.edit_address' | t }} {{ forloop.index }}"
+                    aria-controls="EditAddress_{{ address.id }}"
+                    aria-expanded="true"
+                    data-address-id="{{ address.id }}"
+                    class="button button-bordered"
+                  >
+                    {{ 'customer.account.change' | t }}
+                  </button>
+
+                  <button
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="AddAddress"
+                    class="button button-dark"
+                    onclick="document.getElementById('AddAddress').style.display = (document.getElementById('AddAddress').style.display === 'block' ? 'none' : 'block')"
+                  >
+                    {{ 'customer.addresses.add_new' | t }}
+                  </button>
+                </div>
+              {% endform %}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <div id="AddAddress" style="display: none; margin-top: 2rem;">
+        {%- form 'customer_address', customer.new_address, aria_labelledby: 'AddressNewHeading' -%}
+          <input type="hidden" name="return_to" value="/account#shipping">
+          <input type="hidden" name="form_type" value="customer">
+          <div class="form-grid account__info">
+            <label for="AddressCountryNew" class="account__form-label">
+              {{- 'customer.account.shipping_address.country' | t }}
+              <div class="account__form-select">
+                <select
+                  id="AddressCountryNew"
+                  name="address[country]"
+                  data-address-country-select
+                  data-default="{{ form.country }}"
+                  data-form-id="New"
+                  autocomplete="country"
+                >
+                  {{ all_country_option_tags }}
+                </select>
+                <span class="svg-wrapper">
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </span>
+              </div>
+            </label>
+
+            <label for="AddressZipNew" class="account__form-label">
+              {{- 'customer.account.shipping_address.zip_code' | t }}
+              <input
+                type="text"
+                id="AddressZipNew"
+                name="address[zip]"
+                class="account__form-input"
+                value="{{ address.zip }}"
+                autocapitalize="characters"
+                autocomplete="postal-code"
+                placeholder="{{ 'customer.account.shipping_address.enter_zip_code' | t }}"
+              >
+            </label>
+
+            <label
+              for="AddressProvinceNew"
+              class="account__form-label"
+              style="display:flex; font-size:1.6rem; margin-bottom:0px;"
+            >
+              {{- 'customer.account.shipping_address.state' | t }}
+              <input
+                type="text"
+                id="AddressProvinceNew"
+                name="address[province]"
+                class="account__form-input"
+                value="{{ form.province }}"
+                placeholder="{{ 'customer.account.shipping_address.enter_state' | t }}"
+              >
+            </label>
+
+            <label for="AddressCityNew" class="account__form-label">
+              {{- 'customer.account.shipping_address.city' | t }}
+              <input
+                type="text"
+                id="AddressCityNew"
+                name="address[city]"
+                class="account__form-input"
+                value="{{ form.city }}"
+                placeholder="{{ 'customer.account.shipping_address.enter_city' | t }}"
+              >
+            </label>
+
+            <label for="AddressAddress1New" class="account__form-label">
+              {{- 'customer.account.shipping_address.street_address' | t }}
+              <input
+                id="user-address-new"
+                type="text"
+                name="address[address1]"
+                class="account__form-input"
+                value="{{ form.address1 }}"
+                placeholder="{{ 'customer.account.shipping_address.street_address' | t }}"
+              >
+            </label>
+
+            <label for="user-apt-new" class="account__form-label">
+              {{- 'customer.account.shipping_address.apt' | t }}
+              <input
+                id="user-apt-new"
+                type="text"
+                name="address[address2]"
+                class="account__form-input"
+                value="{{ form.address2 }}"
+                placeholder="{{ 'customer.account.shipping_address.apt' | t }}"
+              >
+            </label>
+          </div>
+          <div class="account__form-buttons">
+            <button
+              type="reset"
+              class="button button-bordered"
+              onclick="document.getElementById('AddAddress').style.display='none';return false;"
+            >
+              {{ 'customer.addresses.cancel' | t }}
+            </button>
+            <button type="submit" class="button button-dark">{{ 'customer.addresses.add' | t }}</button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  window.addEventListener('load', () => {
+    console.log('AFTER LOAD!!!');
+    typeof CustomerAddresses !== 'undefined' && new CustomerAddresses();
+
+    console.log();
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.location.hash === '#shipping') {
+      document.querySelector('.top-tab-link.active').classList.remove('active');
+      document.querySelector('.top-tab-content.active').classList.remove('active');
+      const shippingTabLink = document.querySelector('.top-tab-link[href="#shipping"]');
+      const shippingTabContent = document.getElementById('shipping');
+
+      if (shippingTabLink) shippingTabLink.classList.add('active');
+      if (shippingTabContent) shippingTabContent.classList.add('active');
+    }
+  });
+</script>

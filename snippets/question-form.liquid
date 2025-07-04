@@ -1,0 +1,31 @@
+<script src="{{ 'questions.js' | asset_url }}" defer></script>
+<dialog class="question-form__box" closedby="any">
+  <button
+    class="button-close button button--tertiary"
+    type="button"
+    aria-label="{{ 'accessibility.close' | t }}"
+    onclick="this.closest('dialog').close()"
+  >
+    <span class="svg-wrapper">
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </span>
+  </button>
+  <h1 class="customer__title">{{ 'customer.questions.title' | t }}</h1>
+  <form class="question-form" enctype="multipart/form-data" method="post" action="/apps/api/questions">
+    <input type="hidden" name="productId" value="{{ product_id }}">
+    <label class="account__form-label" for="question-description">
+      {{- 'customer.questions.question_text' | t }}
+      <textarea
+        class="account__form-input"
+        id="question-description"
+        name="question_content"
+        rows="2"
+        required
+        placeholder="{{ 'customer.questions.enter_question' | t }}"
+      ></textarea>
+    </label>
+    <button type="submit" class="button button-dark question-form__submit">
+      {{ 'customer.reviews.form.submit' | t }}
+    </button>
+  </form>
+</dialog>

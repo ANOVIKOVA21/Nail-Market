@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "blocks": {
+        "items_FTDwWX": {
+          "type": "items",
+          "settings": {}
+        },
+        "description_7XjJnH": {
+          "type": "description",
+          "settings": {
+            "title": "Available delivery options and payment methods",
+            "delivery_heading": "Delivery Method",
+            "delivery_options": "Standard Shipping (3–5 business days)\nExpress Shipping (1–2 business days)\nLocal Pickup\nInternational Shipping",
+            "payment_heading": "Payment",
+            "payment_options": "Credit\/Debit cards (Visa, Mastercard)\nApple Pay\nGoogle Pay\nShop Pay\nPayPal"
+          }
+        }
+      },
+      "block_order": [
+        "items_FTDwWX",
+        "description_7XjJnH"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "buttons"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 20,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-footer"
+  ]
+}

@@ -1,0 +1,290 @@
+{%- style -%}
+  .anchor-nav-section-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background_color }};
+  }
+  
+  .anchor-nav-container {
+    /* max-width: {{ section.settings.content_width }}px; */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+  }
+  
+  .anchor-nav-sidebar {
+    position: sticky;
+    top: 20px;
+    align-self: start;
+    height: fit-content;
+  }
+  
+  .anchor-nav-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: {{ section.settings.heading_color }};
+  }
+  
+  .anchor-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .anchor-nav-link {
+    color: {{ section.settings.link_color }};
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+    position: relative;
+  }
+  
+  .anchor-nav-link:hover,
+  .anchor-nav-link.active {
+    color: {{ section.settings.active_color }};
+    font-weight: bold;
+  }
+  
+  .anchor-nav-link:hover:after,
+  .anchor-nav-link.active:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: {{ section.settings.active_color }};
+  }
+  
+  .anchor-content {
+    padding-right: 20px;
+  }
+  
+  .anchor-section {
+    margin-bottom: 40px;
+    scroll-margin-top: 100px;
+  }
+  
+  .anchor-section h2 {
+    color: {{ section.settings.heading_color }};
+    margin-bottom: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    .anchor-nav-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .anchor-nav-sidebar {
+      position: static;
+      margin-bottom: 30px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="anchor-nav-section-{{ section.id }}">
+  <div class="anchor-nav-container page-width">
+    <div class="anchor-nav-sidebar">
+      <h3 class="anchor-nav-title">{{ section.settings.nav_title | default: 'RETURN POLICY' }}</h3>
+      <div class="anchor-nav-links">
+        {% for block in section.blocks %}
+          <a href="#{{ block.settings.anchor_id }}" 
+             class="anchor-nav-link" 
+             data-anchor="{{ block.settings.anchor_id }}">
+            {{ block.settings.link_text }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div class="anchor-content">
+      {% for block in section.blocks %}
+        <div id="{{ block.settings.anchor_id }}" class="anchor-section">
+          <h2>{{ block.settings.heading }}</h2>
+          <div class="rte">{{ block.settings.content }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const links = document.querySelectorAll('.anchor-nav-link');
+  const sections = document.querySelectorAll('.anchor-section');
+  
+  function updateActiveLink() {
+    let current = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      
+      if (window.scrollY >= sectionTop - 150 && window.scrollY < sectionTop + sectionHeight - 150) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    links.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('data-anchor') === current) {
+        link.classList.add('active');
+      }
+    });
+  }
+  
+  // Initial update
+  updateActiveLink();
+  
+  // Update on scroll
+  window.addEventListener('scroll', function() {
+    updateActiveLink();
+  });
+  
+  // Smooth scroll for anchor links
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 100,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Anchor Navigation",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "text",
+      "id": "nav_title",
+      "label": "Navigation Title",
+      "default": "RETURN POLICY"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Active Link Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 800,
+      "max": 1400,
+      "step": 20,
+      "unit": "px",
+      "label": "Content Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "anchor_section",
+      "name": "Anchor Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "anchor_id",
+          "label": "Anchor ID",
+          "info": "Unique ID for this section (no spaces, special characters)"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Section Title"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Section Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Section content goes here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Anchor Navigation",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "eligibility",
+            "link_text": "Eligibility for Returns",
+            "heading": "1. Eligibility for Returns",
+            "content": "<p>You may request a return within 14 days of receiving your order.</p>"
+          }
+        },
+        {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "non-returnable",
+            "link_text": "Non-Returnable Items",
+            "heading": "2. Non-Returnable Items",
+            "content": "<p>Opened or used nail products cannot be returned.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

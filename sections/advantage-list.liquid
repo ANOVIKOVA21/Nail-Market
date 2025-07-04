@@ -1,0 +1,286 @@
+{%- style -%}
+  .advantage-list {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px 0;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .advantage-list__container {
+    max-width: {{ section.settings.content_width }}px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .advantage-list__heading {
+    text-align: {{ section.settings.heading_alignment }};
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+    color: {{ section.settings.heading_color }};
+    font-weight: 700;
+  }
+
+  .advantage-list__items {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: {{ section.settings.column_gap }}px {{ section.settings.row_gap }}px;
+  }
+
+  .advantage-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .advantage-item__icon {
+    flex-shrink: 0;
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    color: {{ section.settings.icon_color }};
+  }
+
+  .advantage-item__text {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .advantage-list__items {
+      grid-template-columns: 1fr;
+    }
+  }
+{%- endstyle -%}
+
+<div class="advantage-list">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="advantage-list__heading {{ section.settings.heading_size }}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    <div class="advantage-list__items">
+      {%- for block in section.blocks -%}
+        <div class="advantage-item" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != blank -%}
+            <div class="advantage-item__icon">
+              {{ block.settings.icon }}
+            </div>
+          {%- endif -%}
+          <p class="advantage-item__text">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Advantage list",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "WE OFFER:"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Large"
+        },
+        {
+          "value": "h1",
+          "label": "Extra Large"
+        },
+        {
+          "value": "h0",
+          "label": "XXL"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Heading bottom spacing",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Content max width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Column gap",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Row gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "advantage",
+      "name": "Advantage",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "SVG icon code",
+          "info": "Paste raw SVG code here (24x24 recommended)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Your advantage description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advantage list",
+      "blocks": [
+        {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z' fill='currentColor'/></svg>",
+            "text": "A flexible discount system"
+          }
+        },
+        {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z' fill='currentColor'/></svg>",
+            "text": "Fast processing and shipping"
+          }
+        },
+        {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z' fill='currentColor'/></svg>",
+            "text": "Personalized approach"
+          }
+        },
+        {
+          "type": "advantage",
+          "settings": {
+            "icon": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z' fill='currentColor'/></svg>",
+            "text": "Updated product range"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,303 @@
+{%  style %} 
+    fieldset {
+      border: none;
+      margin-bottom: 30px;
+    }
+    .return-items {
+      list-style: none;
+      padding: 0;
+      gap: 2rem;
+    }
+
+    .return-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    legend {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    .return-reasons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+      gap: 20px;
+    }
+
+    .return-reasons h4 {
+      margin: 16px 0 5px;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .return-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.6rem;
+    }
+
+    input[type="radio"] {
+      border-radius: 5rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      z-index: 0;
+      accent-color: #444444;
+    }
+
+    .return-text-input {
+      background-color: transparent;
+      font-size: inherit;
+      font-family: inherit;
+      border: none;
+      border-bottom: 1px solid #444444;
+      position: relative;
+      display: block;
+      width: 100%;
+    }
+
+    .comment-block {
+      max-width: 40rem;
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    label.return-item__label--data {
+      display: flex;
+      flex-direction: row;
+      gap: 0.4rem;
+      justify-content: start;
+      align-items: center;
+    }
+
+    label.return-item__label--data input[type="checkbox"] {
+      flex-shrink: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      background-color: white;
+      border: 1px solid #888888;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* Checked state background */
+    label.return-item__label--data input[type="checkbox"]:checked {
+      background-color: #444444;
+      border-color: transparent;
+    }
+
+    /* Checkmark (appears only when checked) */
+    label.return-item__label--data input[type="checkbox"]::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 16px;
+      height: 16px;
+      background-color: #F4F4F4;
+      clip-path: polygon(
+        75% 28%, 45% 60%, 32% 47%, 
+        25% 54%, 45% 73%, 80% 36%
+      );
+      transform: scale(0);
+      transition: transform 0.2s ease;
+    }
+
+    /* Show the checkmark on checked */
+    label.return-item__label--data input[type="checkbox"]:checked::after {
+      transform: scale(1);
+    }
+
+    label.return-item__label--data input[type="checkbox"]:checked {
+      color: #444;
+    }
+
+    @media screen and (max-width: 749px) {
+      .return-reasons {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .return-item {
+        flex-direction: column;
+        align-items: start;
+        gap: 1.5rem;
+      }
+
+      .quantity__flex--return {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .quantity__flex--return>span {
+        margin-left: auto;
+      }
+    }
+{% endstyle %}
+
+{% if return_order %}
+  <section id="return-form" class="page-width">
+    <form method="post" action="/apps/api/returns" class="return-form">
+      <h1 class="customer__title">{{ 'customer.return.title' | t }}</h1>
+      <p class="order__number">Order {{ return_order.name }} from {{ return_order.created_at | date: "%d/%m/%y" }}</p>
+
+      <!-- 1. SELECT THE ITEM FOR RETURN -->
+      <fieldset>
+        <legend><strong>1. SELECT THE ITEM FOR RETURN</strong></legend>
+        <ul class="return-items">
+          {% for line_item in return_order.line_items %}
+            <li class="return-item">
+              <label class="return-item__label--data">
+                <input type="checkbox" name="line_items[{{ forloop.index0 }}][selected]" value="true">
+                {%- if line_item.image -%}
+                  <img
+                    src="{{ line_item.image | image_url: width: 100, height: 100, crop: 'center'  }}"
+                    alt="{{ line_item.title }}"
+                    class="order-item__img"
+                    width="48"
+                    height="48"
+                  >
+                {%- endif -%}
+                {{ line_item.title }}
+              </label>
+              <div style="display: flex; align-items: center;" class="quantity__flex--return">
+                {% if line_item.quantity > 1 %}
+                    <div class="quantity return-quantity-display" data-max="{{ line_item.quantity }}">
+                      <button type="button" class="quantity__button minus" aria-label="Decrease quantity" disabled>
+                          <span class="svg-wrapper">
+                            {{- 'icon-minus.svg' | inline_asset_content -}}
+                          </span>
+                        </button>
+                      <input
+                        type="number"
+                        name="line_items[{{ forloop.index0 }}][quantity]"
+                        value="1"
+                        min="1"
+                        max="{{ line_item.quantity }}"
+                        readonly
+                        style="width: 40px; text-align: center;"
+                        class="quantity__input"
+                      >
+                      <button type="button" class="quantity__button plus" aria-label="Increase quantity">
+                        <span class="svg-wrapper">
+                          {{- 'icon-plus.svg' | inline_asset_content -}}
+                        </span>
+                      </button>
+                    </div>
+                {% else %}
+                  <input type="hidden" name="line_items[{{ forloop.index0 }}][quantity]" value="1">
+                {% endif %}
+                <span>{{ line_item.quantity }}× <strong>{{ line_item.price | money }}</strong></span>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </fieldset>
+
+      <!-- 2. SPECIFY THE REASON FOR RETURN -->
+      <fieldset>
+        <legend><strong>2. SPECIFY THE REASON FOR RETURN</strong></legend>
+        <div class="return-reasons">
+          <div>
+            <h4>Problems with Product Quality</h4>
+            <label><input type="radio" name="reason" value="defect"> The item has a defect/damage</label>
+            <label><input type="radio" name="reason" value="poor_quality"> Poor material quality</label>
+            <label><input type="radio" name="reason" value="not_working"> The item does not work / is faulty</label>
+            <label><input type="radio" name="reason" value="expired"> Expired product</label>
+          </div>
+          <div>
+            <h4>Does Not Meet Expectations</h4>
+            <label><input type="radio" name="reason" value="wrong_description"> Does not match the description</label>
+            <label><input type="radio" name="reason" value="wrong_photos"> Does not match the product photos</label>
+            <label><input type="radio" name="reason" value="wrong_fit"> Does not fit (size, shape, color)</label>
+          </div>
+          <div>
+            <h4>Issues with Delivery</h4>
+            <label><input type="radio" name="reason" value="wrong_item"> Received the wrong item</label>
+            <label><input type="radio" name="reason" value="wrong_variant"> Received wrong size/color</label>
+            <label><input type="radio" name="reason" value="incomplete_order"> Incomplete order</label>
+          </div>
+          <div>
+            <h4>Change of Mind</h4>
+            <label><input type="radio" name="reason" value="not_needed"> No longer needed</label>
+            <label><input type="radio" name="reason" value="mistake"> Purchased by mistake</label>
+            <label><input type="radio" name="reason" value="alternative"> Found a better alternative</label>
+          </div>
+          <div>
+            <h4>Other Reasons</h4>
+            <label><input type="radio" name="reason" value="warranty"> Warranty issues</label>
+            <label><input type="radio" name="reason" value="unsuitable_gift"> Gift not suitable</label>
+            <label>
+              <input type="radio" name="reason" value="other"> Other
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- 3. COMMENT -->
+      <div class="comment-block">
+        <fieldset>
+          <label for="comment"><strong>3. YOUR COMMENT</strong></label>
+          <input class="return-text-input" name="comment" id="comment" placeholder="Add comment...">
+        </fieldset>
+      </div>
+
+      <!-- Submit -->
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <button type="submit" class="button button-dark">SUBMIT REQUEST</button>
+      </div>
+    </form>
+  </section>
+{% endif %}
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.return-form .quantity').forEach(function (control) {
+      const input = control.querySelector('input[type="number"]');
+      const btnMinus = control.querySelector('.quantity__button.minus');
+      const btnPlus = control.querySelector('.quantity__button.plus');
+      const max = parseInt(control.dataset.max, 10);
+
+      function updateButtons() {
+        const val = parseInt(input.value, 10);
+        btnMinus.disabled = val <= 1;
+        btnPlus.disabled = val >= max;
+      }
+
+      btnMinus.addEventListener('click', () => {
+        let val = parseInt(input.value, 10);
+        console.log(val);
+        if (val > 1) {
+          input.value = val - 1;
+          updateButtons();
+        }
+        console.log(val);
+      });
+
+      btnPlus.addEventListener('click', () => {
+        let val = parseInt(input.value, 10);
+        console.log(val);
+        if (val < max) {
+          input.value = val + 1;
+          updateButtons();
+        }
+        console.log(val);
+      });
+
+      updateButtons();
+
+      console.log("end")
+    });
+  });
+</script>

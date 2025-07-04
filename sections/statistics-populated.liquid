@@ -1,0 +1,176 @@
+{%- style -%}
+  .statistics {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px 0;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    text-align: start;
+  }
+  .statistics__container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .statistic {
+    padding: 20px;
+    flex: 1;
+    min-width: 200px;
+  }
+  .statistic__number {
+    font-size: {{ section.settings.number_size }}px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .statistic__descriptor {
+    font-size: {{ section.settings.descriptor_size }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .statistic__number {
+      font-size: 80px;
+    }
+
+
+    .statistic__descriptor {
+      font-size: 20px;
+    }
+
+
+    .statistics {
+      text-align: center;
+    }
+
+
+    .statistic__number {
+      margin-bottom: 4px;
+    }
+
+
+    .statistics__container {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+    }
+  }
+{%- endstyle -%}
+
+<div class="statistics">
+  <div class="statistics__container">
+    {% for block in section.blocks %}
+      <div class="statistic" {{ block.shopify_attributes }}>
+        <div class="statistic__number">{{ block.settings.number }}+</div>
+        <div class="statistic__descriptor">{{ block.settings.descriptor }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Statistics",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "number_size",
+      "min": 16,
+      "max": 140,
+      "step": 2,
+      "unit": "px",
+      "label": "Number size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "descriptor_size",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Descriptor size",
+      "default": 18
+    }
+  ],
+  "blocks": [
+    {
+      "type": "statistic",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "700"
+        },
+        {
+          "type": "text",
+          "id": "descriptor",
+          "label": "Descriptor",
+          "default": "colors"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Statistics",
+      "blocks": [
+        {
+          "type": "statistic",
+          "settings": {
+            "number": "700",
+            "descriptor": "colors"
+          }
+        },
+        {
+          "type": "statistic",
+          "settings": {
+            "number": "30",
+            "descriptor": "collections"
+          }
+        },
+        {
+          "type": "statistic",
+          "settings": {
+            "number": "50",
+            "descriptor": "distributors"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

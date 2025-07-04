@@ -1,0 +1,117 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        "{background-color: #f4f4f4;}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391"
+      }
+    },
+    "policy_text_wqhM9G": {
+      "type": "policy-text",
+      "blocks": {
+        "anchor_section_FKJfRR": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "introduction-section",
+            "link_text": "",
+            "heading": "",
+            "content": "<p>Your privacy is important to us. This policy outlines what information we collect, how we use it, and how we protect your data when you interact with our website and services.<\/p>"
+          }
+        },
+        "anchor_section_VrCKgF": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "eligibility",
+            "link_text": "1. Information We Collect",
+            "heading": "1. Information We Collect",
+            "content": "<p>When you visit our website or make a purchase, we may collect the following information:<\/p><ul><li>Your full name<\/li><li>Shipping and billing address<\/li><li>Email address and phone number<\/li><li>Payment information (processed securely – we do not store card data)<\/li><li>Order history and transaction details<\/li><li>Browser type, IP address, device information, and cookies<\/li><\/ul>"
+          }
+        },
+        "anchor_section_XybKhi": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "how-we-use-your-data",
+            "link_text": "2. How We Use Your Information",
+            "heading": "2. How We Use Your Information",
+            "content": "<p>We use your personal data only for the following purposes:<\/p><ul><li>To process and fulfill your orders<\/li><li>To communicate with you about your order status<\/li><li>To provide customer support<\/li><li>To improve our website, products, and services<\/li><li>To send marketing emails and promotions (only with your consent)<\/li><\/ul>"
+          }
+        },
+        "anchor_section_awACnV": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "how-we-protect-your-data",
+            "link_text": "3. How We Protect Your Data",
+            "heading": "3. How We Protect Your Data",
+            "content": "<p>We take data protection seriously and implement the following measures:<\/p><ul><li>Data is stored on secure servers<\/li><li>SSL encryption is used to protect data during transmission<\/li><li>Only authorized personnel have access to personal data<\/li><\/ul>"
+          }
+        },
+        "anchor_section_zfcARa": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "cookies-article",
+            "link_text": "4. Cookies",
+            "heading": "4. Cookies",
+            "content": "<p>We use cookies to enhance your browsing experience, analyze website traffic, and tailor marketing content. You can disable cookies in your browser settings, but this may affect some functionality on our site.<\/p>"
+          }
+        },
+        "anchor_section_TChJbk": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "sharing-your-data",
+            "link_text": "5. Sharing Your Information",
+            "heading": "5. Sharing Your Information",
+            "content": "<p>We do not sell or rent your personal data to third parties.\u2028 We may share information only with trusted service providers (such as payment processors and shipping companies) for order fulfillment purposes. We may also disclose personal information if required by law or legal request.<\/p>"
+          }
+        },
+        "anchor_section_aiqUqH": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "your-rights",
+            "link_text": "6. Your Rights",
+            "heading": "6. Your Rights",
+            "content": "<p>You have the right to:<\/p><ul><li>Access the personal data we hold about you<\/li><li>Request corrections or deletion of your information<\/li><li>Unsubscribe from marketing communications at any time<\/li><\/ul><p>To exercise any of these rights, please contact us at nailmarketusa.info@gmail.com<\/p>"
+          }
+        },
+        "anchor_section_hmwRmL": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "policy-updates",
+            "link_text": "7. Policy Updates",
+            "heading": "7. Policy Updates",
+            "content": "<p>We may update this privacy policy from time to time. All changes will be posted on this page.\u2028<\/p><p>Last updated: 12.06.2025<\/p><p><strong>We value your trust and are committed to protecting your privacy.\u2028 If you have any questions about this policy or your data, don’t hesitate to reach out.<\/strong><\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "anchor_section_FKJfRR",
+        "anchor_section_VrCKgF",
+        "anchor_section_XybKhi",
+        "anchor_section_awACnV",
+        "anchor_section_zfcARa",
+        "anchor_section_TChJbk",
+        "anchor_section_aiqUqH",
+        "anchor_section_hmwRmL"
+      ],
+      "name": "Anchor Navigation",
+      "settings": {
+        "nav_title": "Privacy Policy",
+        "background_color": "#f4f4f4",
+        "heading_color": "#333333",
+        "link_color": "#666666",
+        "active_color": "#000000",
+        "content_width": 1200,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "policy_text_wqhM9G"
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        "{background-color: #f4f4f4;}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391"
+      }
+    },
+    "featured_product_UiMUGy": {
+      "type": "featured-product",
+      "blocks": {
+        "text_ArzVDt": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>{{ section.settings.product.vendor }}<\/strong>",
+            "text_style": "body",
+            "extra_classes": "product-vendor"
+          }
+        },
+        "title_mRQ6pU": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "text_dfUHqa": {
+          "type": "text",
+          "settings": {
+            "text": "-30% ONLY TODAY",
+            "text_style": "body",
+            "extra_classes": "product__sale"
+          }
+        },
+        "price_ppm8T6": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_xkqVJY": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons_9UwGzG": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "text_ArzVDt",
+        "title_mRQ6pU",
+        "text_dfUHqa",
+        "price_ppm8T6",
+        "variant_picker_xkqVJY",
+        "buy_buttons_9UwGzG"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "albi-liquid-polygel-albi-candy-cotton-15ml",
+        "color_scheme": "scheme-b1fc6e0b-2e75-41f3-ad54-591182d23a43",
+        "secondary_background": false,
+        "title": "",
+        "heading_size": "h2",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_product_UqhTeW": {
+      "type": "featured-product",
+      "blocks": {
+        "text_EeNJgt": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>{{ section.settings.product.vendor }}<\/strong>",
+            "text_style": "body",
+            "extra_classes": "product-vendor"
+          }
+        },
+        "title_aFJhpd": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "text_DwqPHh": {
+          "type": "text",
+          "settings": {
+            "text": "-30% ONLY TODAY",
+            "text_style": "body",
+            "extra_classes": "product__sale"
+          }
+        },
+        "price_LAAzTX": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_bminML": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons_mfajJ3": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "text_EeNJgt",
+        "title_aFJhpd",
+        "text_DwqPHh",
+        "price_LAAzTX",
+        "variant_picker_bminML",
+        "buy_buttons_mfajJ3"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "misha-new-york-gel-polish-192-15ml",
+        "color_scheme": "scheme-b1fc6e0b-2e75-41f3-ad54-591182d23a43",
+        "secondary_background": false,
+        "title": "",
+        "heading_size": "h2",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_product_UjMiz4": {
+      "type": "featured-product",
+      "blocks": {
+        "text_b476H4": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>{{ section.settings.product.vendor }}<\/strong>",
+            "text_style": "body",
+            "extra_classes": "product-vendor"
+          }
+        },
+        "title_MNVfNi": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "text_94Yaj3": {
+          "type": "text",
+          "settings": {
+            "text": "-30% ONLY TODAY",
+            "text_style": "body",
+            "extra_classes": "product__sale"
+          }
+        },
+        "price_Mwfh7t": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_aKPQ43": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons_PzpBw9": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "text_b476H4",
+        "title_MNVfNi",
+        "text_94Yaj3",
+        "price_Mwfh7t",
+        "variant_picker_aKPQ43",
+        "buy_buttons_PzpBw9"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "albi-liquid-polygel-albi-candy-cotton-15ml",
+        "color_scheme": "scheme-b1fc6e0b-2e75-41f3-ad54-591182d23a43",
+        "secondary_background": false,
+        "title": "",
+        "heading_size": "h2",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured_product_UiMUGy",
+    "featured_product_UqhTeW",
+    "featured_product_UjMiz4"
+  ]
+}

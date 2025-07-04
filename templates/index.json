@@ -1,0 +1,430 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_3FCqj3": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_CQfiqg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner1.png",
+            "image_overlay_opacity": 0,
+            "heading": "EXCLUSIVE PROFESSIONAL COLLECTION",
+            "heading_size": "h1",
+            "subheading": "a private collection for true nail professionals looking for the finest polygels, builder gels, and color bases",
+            "button_label": "DETAILS",
+            "link": "shopify://collections/all",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "left",
+            "color_scheme": "scheme-07fe4eb1-44c7-4cb2-bd32-e02158139323"
+          }
+        },
+        "slide_xeycRL": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ee66a831-d319-4ed8-a29b-95bd1b84902c_1.png",
+            "image_overlay_opacity": 0,
+            "heading": "EXCLUSIVE PROFESSIONAL COLLECTION",
+            "heading_size": "h1",
+            "subheading": "a private collection for true nail professionals looking for the finest polygels, builder gels, and color bases",
+            "button_label": "DETAILS",
+            "link": "shopify://collections/all",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "left",
+            "text_alignment_mobile": "left",
+            "color_scheme": "scheme-07fe4eb1-44c7-4cb2-bd32-e02158139323"
+          }
+        }
+      },
+      "block_order": [
+        "slide_CQfiqg",
+        "slide_xeycRL"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "bestsellers",
+        "products_to_show": 5,
+        "title": "<strong>BESTSELLERS</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "enable_desktop_slider": true,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_4Fb47N": {
+      "type": "image-with-text",
+      "blocks": {
+        "text_9T7pbk": {
+          "type": "text",
+          "settings": {
+            "text": "<h2><strong>New Arrivals</strong></h2><h2><strong><br/>Sale Items</strong></h2><h2><strong><br/></strong><a href=\"/collections/bestsellers\" title=\"BESTSELLERS\"><strong>Best Sellers</strong></a></h2>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "text_9T7pbk"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/manicure.jpg",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "show_on_desktop": true,
+        "show_on_tablet": false,
+        "show_on_mobile": false,
+        "section_color_scheme": "scheme-b1fc6e0b-2e75-41f3-ad54-591182d23a43",
+        "color_scheme": "scheme-b1fc6e0b-2e75-41f3-ad54-591182d23a43",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "enable_banner_mode": false
+      }
+    },
+    "multirow_yNJrdh": {
+      "type": "multirow",
+      "blocks": {
+        "row_tTzxXf": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/manicure.jpg",
+            "caption": "",
+            "heading": "<strong>New Arrivals</strong>",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_gbGBNg": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/manicure.jpg",
+            "caption": "",
+            "heading": "<strong>Sale Items</strong>",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "row_4qEPHc": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/manicure.jpg",
+            "caption": "",
+            "heading": "<a href=\"/collections/bestsellers\" title=\"BESTSELLERS\"><strong>Best Sellers</strong></a>",
+            "text": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_tTzxXf",
+        "row_gbGBNg",
+        "row_4qEPHc"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "small",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-right",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "nowrap-mobile-layout": true,
+        "show_on_desktop": false,
+        "show_on_tablet": true,
+        "show_on_mobile": true,
+        "section_color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "row_color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_W4DCUn": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "recommended",
+        "products_to_show": 5,
+        "title": "<strong>WE RECOMMENDED</strong>",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "enable_desktop_slider": true,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_gnmLei": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_fyKq7c": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/dd4b8ed7a02dd669e8900cc2b52558bd00751eee-min.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "CONTACT US",
+            "link": "shopify://pages/contact",
+            "img_link": true
+          }
+        },
+        "column_VdCqgj": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/326ac905e02211a326d84c0afb82fd5a88f18978-min.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "ABOUT US",
+            "link": "shopify://pages/about-us",
+            "img_link": true
+          }
+        },
+        "column_V3Kj6T": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/d5bb7d2abd380eb19c2cb67479891d17ea0671e9-min.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "DISCOUNTS",
+            "link": "shopify://pages/discounts",
+            "img_link": true
+          }
+        }
+      },
+      "block_order": [
+        "column_fyKq7c",
+        "column_VdCqgj",
+        "column_V3Kj6T"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "columns_tablet": "2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn_wRRcEz": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_LeLkVb": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/cf3f4ba1260b1c829c7a62eabee681f4d2678a93_1_b9a28914-91fa-4495-a5bf-9e45bcc573d1.png",
+            "title": "",
+            "text": "",
+            "link_label": "BECOME OUR DISTRIBUTOR",
+            "link": "shopify://pages/become-our-distributor",
+            "img_link": true
+          }
+        },
+        "column_GAhgde": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/7ffe550ab3aa664934a6834996049e478f0902a3_1.png",
+            "title": "",
+            "text": "",
+            "link_label": "BUY IN WHOLESALE PRICE",
+            "link": "shopify://pages/buy-in-wholesale",
+            "img_link": true
+          }
+        }
+      },
+      "block_order": [
+        "column_LeLkVb",
+        "column_GAhgde"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "columns_tablet": "2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 36
+      }
+    },
+    "featured_product_UwVHYx": {
+      "type": "featured-product",
+      "blocks": {
+        "text_iH6pBm": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>{{ section.settings.product.vendor }}</strong>",
+            "text_style": "body",
+            "extra_classes": "product-vendor"
+          }
+        },
+        "title_hVRJdE": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "rating_fPiMmW": {
+          "type": "rating",
+          "settings": {}
+        },
+        "text_gg83hd": {
+          "type": "text",
+          "settings": {
+            "text": "-30% ONLY TODAY",
+            "text_style": "body",
+            "extra_classes": "product__sale"
+          }
+        },
+        "price_raNFPP": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_VzRmex": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons_bV9w7y": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "view_all_button_idLKH7": {
+          "type": "view_all_button",
+          "settings": {
+            "view_all_label": "VIEW ALL",
+            "view_all_link": "shopify://pages/discounts"
+          }
+        }
+      },
+      "block_order": [
+        "text_iH6pBm",
+        "title_hVRJdE",
+        "rating_fPiMmW",
+        "text_gg83hd",
+        "price_raNFPP",
+        "variant_picker_VzRmex",
+        "buy_buttons_bV9w7y",
+        "view_all_button_idLKH7"
+      ],
+      "custom_css": [
+        ".product__info-container {display: flex; flex-direction: column; align-items: center;}"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "albi-liquid-polygel-albi-candy-cotton-15ml",
+        "color_scheme": "scheme-b1fc6e0b-2e75-41f3-ad54-591182d23a43",
+        "secondary_background": false,
+        "title": "<strong>SPECIAL OFFER</strong>",
+        "heading_size": "h2",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "slideshow_3FCqj3",
+    "featured_collection",
+    "image_with_text_4Fb47N",
+    "multirow_yNJrdh",
+    "featured_collection_W4DCUn",
+    "multicolumn_gnmLei",
+    "multicolumn_wRRcEz",
+    "featured_product_UwVHYx"
+  ]
+}

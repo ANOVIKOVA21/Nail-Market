@@ -1,0 +1,39 @@
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+<section id="offers" class="tab-content">
+  <div class="tab-content-container">
+    <h1 class="customer__title">{{ 'customer.offers.title' | t }}</h1>
+    <ul
+      class="grid product-grid contains-card contains-card--product contains-card--standard grid--3-col-desktop grid--2-col-tablet grid--2-col-tablet-down"
+      role="list"
+    >
+      {%- for product in collections.sale.products limit: 8 -%}
+        <li class="grid__item">
+          {%- assign reviews = product.metafields['app--261195431937'].reviews.value -%}
+          {% assign reviews_count = 0 %}
+          {% assign reviews_rating_average = 0.0 %}
+
+          {% if reviews %}
+            {% for rw in reviews %}
+              {% assign reviews_count = reviews_count | plus: 1 %}
+              {% assign reviews_rating_average = reviews_rating_average | plus: rw.rating %}
+            {% endfor %}
+            {% assign reviews_rating_average = reviews_rating_average | divided_by: reviews_count | round: 2 %}
+          {% endif %}
+          {% render 'card-product',
+            card_product: product,
+            media_aspect_ratio: square,
+            image_shape: default,
+            show_secondary_image: true,
+            show_vendor: false,
+            show_rating: true,
+            skip_styles: false,
+            section_id: offers,
+            quick_add: 'standard',
+            reviews_count: reviews_count,
+            reviews_rating_average: reviews_rating_average
+          %}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>

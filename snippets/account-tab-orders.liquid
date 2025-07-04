@@ -1,0 +1,463 @@
+<section id="orders" class="tab-content">
+  <div class="tab-content-container">
+    <h1 class="customer__title">{{ 'customer.orders.title' | t }}</h1>
+    {% comment %}
+      {% paginate customer.orders by 20 %}
+         {%- if customer.orders.size > 0 -%}
+        <table role="table" class="order-history">
+          <caption class="visually-hidden">
+            {{ 'customer.orders.title' | t }}
+          </caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th id="ColumnOrder" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</th>
+              <th id="ColumnDate" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</th>
+              <th id="ColumnPayment" scope="col" role="columnheader">{{ 'customer.orders.payment_status' | t }}</th>
+              <th id="ColumnFulfillment" scope="col" role="columnheader">
+                {{ 'customer.orders.fulfillment_status' | t }}
+              </th>
+              <th id="ColumnTotal" scope="col" role="columnheader">{{ 'customer.orders.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup">
+            {%- for order in customer.orders -%}
+              <tr role="row">
+                <td
+                  id="RowOrder"
+                  role="cell"
+                  headers="ColumnOrder"
+                  data-label="{{ 'customer.orders.order_number' | t }}"
+                >
+                  <a
+                    href="{{ order.customer_url }}"
+                    aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+                  >
+                    {{ order.name }}
+                  </a>
+                </td>
+                <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                  {{ order.created_at | time_tag: format: 'date' }}
+                </td>
+                <td
+                  headers="RowOrder ColumnPayment"
+                  role="cell"
+                  data-label="{{ 'customer.orders.payment_status' | t }}"
+                >
+                  {{ order.financial_status_label }}
+                </td>
+                <td
+                  headers="RowOrder ColumnFulfillment"
+                  role="cell"
+                  data-label="{{ 'customer.orders.fulfillment_status' | t }}"
+                >
+                  {{ order.fulfillment_status_label }}
+                </td>
+                <td headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                  {{ order.total_net_amount | money_with_currency }}
+                </td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+        {% comment %}
+          {%- else -%}
+            <p>{{ 'customer.orders.none' | t }}</p>
+          {%- endif -%}
+        {% endcomment %}
+
+        {%- if paginate.pages > 1 -%}
+          {%- if paginate.parts.size > 0 -%}
+            <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+              <ul role="list">
+                {%- if paginate.previous -%}
+                  <li>
+                    <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">
+                      <span class="svg-wrapper">
+                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+
+                {%- for part in paginate.parts -%}
+                  <li>
+                    {%- if part.is_link -%}
+                      <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                        {{- part.title -}}
+                      </a>
+                    {%- else -%}
+                      {%- if part.title == paginate.current_page -%}
+                        <span
+                          aria-current="page"
+                          aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
+                        >
+                          {{- part.title -}}
+                        </span>
+                      {%- else -%}
+                        <span>{{ part.title }}</span>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+
+                {%- if paginate.next -%}
+                  <li>
+                    <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">
+                      <span class="svg-wrapper">
+                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                      </span>
+                    </a>
+                  </li>
+                {%- endif -%}
+              </ul>
+            </nav>
+          {%- endif -%}
+        {%- endif -%}
+      {% endpaginate %}
+    {% endcomment %}
+    <div class="orders-filters">
+      <button type="button" class="orders-filter__btn active" onclick="filterOrders('all', this)">
+        {{ 'customer.orders.all_orders' | t }}
+      </button>
+      <button type="button" class="orders-filter__btn" onclick="filterOrders('month', this)">
+        {{ 'customer.orders.orders_this_month' | t }}
+      </button>
+      <button type="button" class="orders-filter__btn" onclick="filterOrders('year', this)">
+        {{ 'customer.orders.orders-this-year' | t }}
+      </button>
+    </div>
+
+    <!-- TEST HTML >
+    <ul class="orders-list">
+      <li class="order-accordion" data-order-date="2025-06-01" data-order-year="2025" data-order-month="2025-06">
+        <details>
+          <summary class="order-accordion__toggle">
+            <h2 class="order-accordion__title">
+              {{ 'customer.orders.order_number' | t -}}
+              <strong>№1001</strong> from 01.06.2025
+            </h2>
+            <span class="order-status">Completed</span>
+            <span class="svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </summary>
+          <div class="order-accordion__details">
+            <div class="order-tracking">
+              Tracking Number:
+              <div>
+                TRACK123
+                <span class="svg-wrapper">
+                  {{- 'icon-copy.svg' | inline_asset_content -}}
+                </span>
+              </div>
+            </div>
+            <ul class="order-items">
+              <li class="order-item">
+                <a href="#" class="order-item__link">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0701/4177/1931/files/MishaNewYorkGelPolish19215ml.jpg?v=1749034033"
+                    alt="Nail Polish"
+                    class="order-item__img"
+                    width="48"
+                    height="48"
+                  >
+                  <p class="order-item__title">Nail Polish</p>
+                </a>
+                <p class="order-item__price">2 x <strong>$19.99</strong></p>
+              </li>
+              <li class="order-item">
+                <a href="#" class="order-item__link">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0701/4177/1931/files/691ad7edbd77180f7fa1a463943d511e1e185ab7.jpg?v=1750080783"
+                    alt="Top Coat"
+                    class="order-item__img"
+                    width="48"
+                    height="48"
+                  >
+                  <p class="order-item__title">Top Coat</p>
+                </a>
+                <p class="order-item__price">1 x <strong>$9.99</strong></p>
+              </li>
+            </ul>
+            <div class="order-total">
+              <span class="order-total__text">Total: </span
+              ><span>
+                <strong>$49.97</strong>
+              </span>
+            </div>
+            <div class="order-actions">
+              <button class="button button-bordered" type="button">Request Return</button>
+              <button class="button button-dark" type="button">Write a Review</button>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li class="order-accordion" data-order-date="2025-06-15" data-order-year="2025" data-order-month="2025-06">
+        <details>
+          <summary class="order-accordion__toggle">
+            <h2 class="order-accordion__title">
+              {{ 'customer.orders.order_number' | t -}}
+              <strong>№1002</strong> from 15.06.2025
+            </h2>
+            <span class="order-status">In progress</span>
+            <span class="svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </summary>
+          <div class="order-accordion__details">
+            <div class="order-tracking">
+              Tracking Number:
+              <div>
+                no tracking
+                <span class="svg-wrapper">
+                  {{- 'icon-copy.svg' | inline_asset_content -}}
+                </span>
+              </div>
+            </div>
+            <ul class="order-items">
+              <li class="order-item">
+                <a href="#" class="order-item__link">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0701/4177/1931/files/RockNailGelPolish113Hater10ml.png?v=1749033968"
+                    alt="Base Coat"
+                    class="order-item__img"
+                    width="48"
+                    height="48"
+                  >
+                  <p class="order-item__title">Base Coat</p>
+                </a>
+                <p class="order-item__price">1 x <strong>$19.99</strong></p>
+              </li>
+            </ul>
+            <div class="order-total">
+              <span class="order-total__text">Total: </span
+              ><span>
+                <strong>$19.99</strong>
+              </span>
+            </div>
+            <div class="order-actions">
+              <button class="button button-bordered" type="button">Request Return</button>
+              <button class="button button-dark" type="button">Write a Review</button>
+            </div>
+          </div>
+        </details>
+      </li>
+      <li class="order-accordion" data-order-date="2025-05-20" data-order-year="2025" data-order-month="2025-05">
+        <details>
+          <summary class="order-accordion__toggle">
+            <h2 class="order-accordion__title">
+              {{ 'customer.orders.order_number' | t }}
+              <strong>№1003</strong> from 20.05.2025
+            </h2>
+            <span class="order-status">Cancelled</span>
+            <span class="svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </summary>
+          <div class="order-accordion__details">
+            <div class="order-tracking">
+              Tracking Number:
+              <div>
+                no tracking
+                <span class="svg-wrapper">
+                  {{- 'icon-copy.svg' | inline_asset_content -}}
+                </span>
+              </div>
+            </div>
+            <ul class="order-items">
+              <li class="order-item">
+                <a href="#" class="order-item__link">
+                  <img
+                    src="https://cdn.shopify.com/s/files/1/0701/4177/1931/files/a70a76f93c543edccbfa32e9fe6989ceecd3f2fc.jpg?v=1750080783"
+                    alt="Nail File"
+                    class="order-item__img"
+                    width="48"
+                    height="48"
+                  >
+                  <p class="order-item__title">Nail File</p>
+                </a>
+                <p class="order-item__price">3 x <strong>$3.33</strong></p>
+              </li>
+            </ul>
+            <div class="order-total">
+              <span class="order-total__text">Total: </span
+              ><span>
+                <strong>$9.99</strong>
+              </span>
+            </div>
+            <div class="order-actions">
+              <button class="button button-bordered" type="button">Request Return</button>
+              <button class="button button-dark" type="button">Write a Review</button>
+            </div>
+          </div>
+        </details>
+      </li>
+    </ul-->
+
+    {% paginate customer.orders by 20 %}
+      {%- if customer.orders.size > 0 -%}
+        <ul class="orders-list">
+          {%- for order in customer.orders -%}
+            {%- assign order_date = order.created_at | date: '%Y-%m-%d' -%}
+            {%- assign order_year = order.created_at | date: '%Y' -%}
+            {%- assign order_month = order.created_at | date: '%Y-%m' -%}
+            <li
+              class="order-accordion"
+              data-order-date="{{ order_date }}"
+              data-order-year="{{ order_year }}"
+              data-order-month="{{ order_month }}"
+              data-order-id="{{ order.id }}"
+            >
+              <details>
+                <summary class="order-accordion__toggle">
+                  <h2 class="order-accordion__title">
+                    {{ 'customer.orders.order_number' | t }}
+                    <strong>{{ order.name }}</strong> from
+                    {{ order.created_at | date: '%d.%m.%Y' }}
+                  </h2>
+                  <span class="order-status">
+                    {{ order.fulfillment_status }}
+                    {%- if order.cancelled_at -%}
+                      {{ 'customer.orders.status.cancelled' | t }}
+                    {%- elsif order.fulfillment_status == 'fulfilled' -%}
+                      {{ 'customer.orders.status.fulfillment' | t }}
+                    {%- else -%}
+                      {{ 'customer.orders.status.in_progress' | t }}
+                    {%- endif -%}
+                  </span>
+                  <span class="svg-wrapper">
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                  </span>
+                </summary>
+                <div class="order-accordion__details">
+                  <div class="order-tracking">
+                    {{ 'customer.orders.track_number' | t }}
+                    <div>
+                      {%- if order.fulfillments.size > 0 and order.fulfillments[0].tracking_number -%}
+                        {{ order.fulfillments[0].tracking_number }}
+                      {%- else -%}
+                        <span>No tracking number</span>
+                      {%- endif -%}
+                      <span class="svg-wrapper">
+                        {{- 'icon-copy.svg' | inline_asset_content -}}
+                      </span>
+                    </div>
+                  </div>
+
+                  <ul class="order-items">
+                    {%- for line_item in order.line_items -%}
+                      {% assign li_refunded_quantity = 0 %}
+                      <li class="order-item" data-line-item-id="{{ line_item.id }}"
+                        data-line-item-url="{{ line_item.url }}" 
+                        data-line-item-image="{{ line_item.image | image_url: width: 100, height: 100, crop: 'center'  }}"
+                        data-line-item-quantity="{{ line_item.quantity }}"
+                        data-line-item-unit-price="{{ line_item.final_price }}"
+                        data-line-item-final-price="{{ line_item.final_line_price | money_with_currency }}"
+                        data-line-item-refunded-quantity="{% for line in order.subtotal_line_items %}{% if line_item.id == line.id %}{% assign li_refunded_quantity = line.refunded_quantity | default:0 %}{{ line.refunded_quantity | default:0 }}{% endif %}{% endfor %}"
+                        >
+                        <a href="{{ line_item.url }}" class="order-item__link">
+                          {%- if line_item.image -%}
+                            <img
+                              src="{{ line_item.image | image_url: width: 100, height: 100, crop: 'center'  }}"
+                              alt="{{ line_item.title }}"
+                              class="order-item__img"
+                              width="48"
+                              height="48"
+                            >
+                          {%- endif -%}
+                          <p class="order-item__title">{{ line_item.title | escape }}</p>
+                        </a>
+                        <p class="order-item__price">
+                          {% assign refunded_money_int = line_item.final_price | times: li_refunded_quantity %}
+                        {{ line_item.quantity }}{% if li_refunded_quantity != 0 %}({{ li_refunded_quantity }} refunded){%endif%} x
+                          <strong>{{ line_item.final_line_price | minus: refunded_money_int | money_with_currency }}</strong>
+                        </p>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                  <div class="order-total">
+                    <span class="order-total__text">{{ 'customer.orders.total' | t }}: </span
+                    ><span>
+                      <strong>{{ order.total_net_amount | money_with_currency }}</strong>
+                    </span>
+                  </div>
+                  <div class="order-actions">
+                    <button class="button button-bordered" type="button">
+                      {{ 'customer.orders.request_return' | t }}
+                    </button>
+                    <button class="button button-dark" type="button">{{ 'customer.orders.write_review' | t }}</button>
+                  </div>
+                </div>
+              </details>
+            </li>
+
+          {%- endfor -%}
+        </ul>
+
+        {%- if paginate.pages > 1 and paginate.parts.size > 0 -%}
+          <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+            <ul role="list">
+              {%- if paginate.previous -%}
+                <li>
+                  <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">
+                    <span class="svg-wrapper">
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- for part in paginate.parts -%}
+                <li>
+                  {%- if part.is_link -%}
+                    <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                      {{- part.title -}}
+                    </a>
+                  {%- else -%}
+                    {%- if part.title == paginate.current_page -%}
+                      <span aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                        {{- part.title -}}
+                      </span>
+                    {%- else -%}
+                      <span>{{ part.title }}</span>
+                    {%- endif -%}
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+              {%- if paginate.next -%}
+                <li>
+                  <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">
+                    <span class="svg-wrapper">
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                  </a>
+                </li>
+              {%- endif -%}
+            </ul>
+          </nav>
+        {%- endif -%}
+          {%- else -%}
+          <p>{{ 'customer.orders.none' | t }}</p>
+      {%- endif -%}
+    {% endpaginate %}
+
+  </div>
+            {% render 'return-form' %}
+</section>
+
+<script>
+  function filterOrders(type, btn) {
+    const now = new Date();
+    const year = now.getFullYear().toString();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const monthStr = year + '-' + month;
+    document.querySelectorAll('.orders-filter__btn').forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.order-accordion').forEach(function (order) {
+      let show = false;
+      if (type === 'all') show = true;
+      else if (type === 'month') show = order.getAttribute('data-order-month') === monthStr;
+      else if (type === 'year') show = order.getAttribute('data-order-year') === year;
+      order.style.display = show ? '' : 'none';
+    });
+  }
+</script>

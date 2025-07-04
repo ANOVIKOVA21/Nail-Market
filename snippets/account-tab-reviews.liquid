@@ -1,0 +1,347 @@
+<section id="reviews" class="tab-content">
+  <div class="tab-content-container">
+    <h1 class="customer__title">{{ 'customer.reviews.title' | t }}</h1>
+    {%- assign reviews = customer.metafields.app--261195431937.reviews.value -%}
+    {%  assign reviews_count = 0 %}
+
+    {% for rw in reviews %} {% assign reviews_count = reviews_count | plus: 1 %} {% endfor %}
+
+    {%- if customer.orders.size == 0 -%}
+      <p>{{ 'customer.orders.none' | t }}</p>
+    {%- else -%}
+      {%- if reviews_count > 0 -%}
+        <ul class="reviews-list">
+          {%- for review in reviews -%}
+            <li class="reviews-item">
+              <time class="review-date" datetime="{{ review.created_at }}">{{ review.created_at }}</time>
+              <a href="/products/{{ review.product.value.handle }}" class="review-product">
+                {% if review.product.value.featured_image %}
+                  <img
+                    src="{{ review.product.value.featured_image | image_url }}"
+                    alt="{{ review.product.value.title }}"
+                    class="review-product__img"
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                  >
+                {% endif %}
+                <p class="review-product__title">
+                  <strong>{{ review.product.value.title }}</strong>
+                </p>
+              </a>
+              <div class="review-rating">
+                {%- for i in (1..5) -%}
+                  <span class="star{% if i <= review.rating %} star--active{% endif %}">&#9733;</span>
+                {%- endfor -%}
+              </div>
+              {% if review.title %}
+                <strong class="review-text">{{ review.title | default: review.text }}</strong>
+              {% endif %}
+              {%- if review.images.value -%}
+                <div class="review-images">
+                  {%- for image in review.images.value -%}
+                    <img 
+                      src="{{ image | image_url: width: 100, height: 100, crop: 'center' }}" 
+                      alt="Review image {{ forloop.index }}"
+                      class="review-image-thumbnail"
+                      data-review-index="{{ forloop.parentloop.index0 }}"
+                      data-image-index="{{ forloop.index0 }}"
+                      data-full-size-src="{{ image | image_url }}"
+                      loading="lazy"
+                      width="80"
+                      height="80"
+                    >
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+              
+              {% if review.content or review.text %}
+                <p class="review-text">{{ review.content | default: review.text }}</p>
+              {% endif %}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- else -%}
+        <div class="no-reviews">
+          <p>{{ 'customer.reviews.empty' | t }}</p>
+        </div>
+      {%- endif -%}
+
+      <ul class="products-to-review-list">
+        {%- for order in customer.orders -%}
+          {%- for line_item in order.line_items -%}
+            <li class="product-to-review reviews-item">
+              <a href="{{ line_item.url }}" class="product-to-review__info review-product">
+                <img
+                  src="{{ line_item.image | image_url: width: 64, height: 64, crop: 'center' }}"
+                  alt="{{ line_item.title }}"
+                  width="64"
+                  height="64"
+                  class="product-to-review__img review-product__img"
+                >
+                <p class="product-to-review__title review-product__title">
+                  <strong>{{ line_item.title }}</strong>
+                </p>
+              </a>
+              <button
+                class="button button-bordered review-btn"
+                data-product-id="{{ line_item.product_id }}"
+                data-product-title="{{ line_item.title }}"
+                data-product-image="{{ line_item.image | image_url: width: 64, height: 64, crop: 'center' }}"
+                data-product-url="{{ line_item.url }}"
+              >
+                {{ 'customer.orders.write_review' | t }}
+              </button>
+            </li>
+          {%- endfor -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+  {% render 'review-form' %}
+  
+  <!-- Lightbox for review images -->
+  <div id="review-image-lightbox" class="lightbox" style="display: none;">
+    <span class="lightbox-close">&times;</span>
+    <span class="lightbox-nav lightbox-prev">&#10094;</span>
+    <span class="lightbox-nav lightbox-next">&#10095;</span>
+    <div class="lightbox-content">
+      <img id="lightbox-image" src="" alt="">
+    </div>
+  </div>
+</section>
+
+<style>
+  .review-images {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+  }
+  
+  .review-image-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: transform 0.2s;
+  }
+  
+  .review-image-thumbnail:hover {
+    transform: scale(1.05);
+  }
+  
+  .lightbox {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lightbox-content {
+    position: relative;
+    text-align: center;
+  }
+  
+  #lightbox-image {
+    max-width: 50vw;
+    max-height: 50vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  
+  .lightbox-prev {
+    left: 20px;
+  }
+  
+  .lightbox-next {
+    right: 20px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Review form handling
+    document.querySelectorAll('.review-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelector('.active .tab-content-container').style.display = 'none';
+
+        const form = document.querySelector('.review-form__box');
+        const formImg = form.querySelector('.review-form__product-img');
+        const formProductId = form.querySelector('input[name="productId"]');
+        formProductId.value = btn.dataset.productId;
+        formImg.src = btn.dataset.productImage;
+        formImg.alt = btn.dataset.productTitle;
+        form.querySelector('.review-form__product-title').textContent = btn.dataset.productTitle;
+        form.querySelector('.review-form__product').href = btn.dataset.productUrl;
+        form.style.display = 'block';
+        window.scroll({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    document.querySelectorAll('.review-form__back-button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelector('.active .tab-content-container').style.display = 'block';
+        const form = document.querySelector('.review-form__box');
+        form.style.display = 'none';
+        window.scroll({ top: 0, behavior: 'smooth' });
+      });
+    });
+    
+    // Lightbox functionality
+    const lightbox = document.getElementById('review-image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-image');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    
+    let currentImageIndex = 0;
+    let allReviewImages = [];
+    
+    // Collect all review images data
+    document.querySelectorAll('.review-image-thumbnail').forEach((thumbnail, index) => {
+      allReviewImages.push({
+        reviewIndex: thumbnail.dataset.reviewIndex,
+        imageIndex: thumbnail.dataset.imageIndex,
+        src: thumbnail.dataset.fullSizeSrc,
+        alt: thumbnail.alt
+      });
+    });
+    
+    // Function to calculate and set image dimensions
+    function setLightboxImageDimensions(imgElement, imgSrc) {
+      const tempImg = new Image();
+      tempImg.src = imgSrc;
+      tempImg.onload = function() {
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        const maxDisplayWidth = viewportWidth * 0.5;
+        const maxDisplayHeight = viewportHeight * 0.5;
+        
+        let displayWidth = tempImg.naturalWidth;
+        let displayHeight = tempImg.naturalHeight;
+        
+        // Check if width exceeds maximum
+        if (displayWidth > maxDisplayWidth) {
+          const ratio = maxDisplayWidth / displayWidth;
+          displayWidth = maxDisplayWidth;
+          displayHeight *= ratio;
+        }
+        
+        // Check if height still exceeds maximum after width adjustment
+        if (displayHeight > maxDisplayHeight) {
+          const ratio = maxDisplayHeight / displayHeight;
+          displayHeight = maxDisplayHeight;
+          displayWidth *= ratio;
+        }
+        
+        // Apply dimensions
+        imgElement.style.width = `${displayWidth}px`;
+        imgElement.style.height = `${displayHeight}px`;
+        imgElement.src = imgSrc;
+      };
+    }
+    
+    // Open lightbox when thumbnail is clicked
+    document.querySelectorAll('.review-image-thumbnail').forEach((thumbnail, index) => {
+      thumbnail.addEventListener('click', function() {
+        currentImageIndex = index;
+        const fullSizeSrc = this.dataset.fullSizeSrc;
+        setLightboxImageDimensions(lightboxImg, fullSizeSrc);
+        lightboxImg.alt = this.alt;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close lightbox
+    closeBtn.addEventListener('click', function() {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Navigate between images
+    function showImage(direction) {
+      if (direction === 'prev') {
+        currentImageIndex = (currentImageIndex - 1 + allReviewImages.length) % allReviewImages.length;
+      } else {
+        currentImageIndex = (currentImageIndex + 1) % allReviewImages.length;
+      }
+      
+      const newImage = allReviewImages[currentImageIndex];
+      setLightboxImageDimensions(lightboxImg, newImage.src);
+      lightboxImg.alt = newImage.alt;
+    }
+    
+    prevBtn.addEventListener('click', function() {
+      showImage('prev');
+    });
+    
+    nextBtn.addEventListener('click', function() {
+      showImage('next');
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') {
+          lightbox.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        } else if (e.key === 'ArrowLeft') {
+          showImage('prev');
+        } else if (e.key === 'ArrowRight') {
+          showImage('next');
+        }
+      }
+    });
+    
+    // Close when clicking outside image
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (lightbox.style.display === 'flex' && lightboxImg.src) {
+        setLightboxImageDimensions(lightboxImg, lightboxImg.src);
+      }
+    });
+  });
+</script>

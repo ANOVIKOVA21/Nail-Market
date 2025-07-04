@@ -1,0 +1,47 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .wishlist-section {
+    padding: 3rem 0;
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+  }
+  
+  @media screen and (min-width: 750px) {
+    .wishlist-section {
+      padding: 4rem 0;
+    }
+  }
+</style>
+
+<div class="wishlist-section color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    {% render 'account-tab-wishlist' %}
+  </div>
+</div>
+
+{{ 'wishlist.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Wishlist section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wishlist section",
+      "category": "Wishlist"
+    }
+  ]
+}
+{% endschema %}

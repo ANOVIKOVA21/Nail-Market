@@ -1,0 +1,37 @@
+<div class="filter-price">
+  <span class="field-currency">{{- cart.currency.symbol }} 0 </span>
+  <span class="field-currency max-value">
+    {{ cart.currency.symbol -}}
+    {{- filter.max_value.value | default: filter.range_max | money_without_currency }}
+  </span>
+</div>
+
+<div class="field">
+  <input
+    class="field__input-range"
+    name="{{ filter.max_value.param_name }}"
+    id="{{ id_prefix }}{{ filter.label | escape }}-GTE"
+    value="{{ filter.max_value.value | default: filter.range_max | money_without_currency }}"
+    type="range"
+    min="0"
+    max="{{ filter.range_max | money_without_currency }}"
+    step="1"
+    inputmode="decimal"
+    placeholder="0"
+    data-pattern="\d| |,|\."
+    data-min="0"
+    data-max="{{ filter.range_max | money_without_currency }}"
+  >
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('{{ id_prefix }}{{ filter.label | escape }}-GTE');
+    const span = document.querySelector('.max-value');
+    if (input && span) {
+      input.addEventListener('change', function () {
+        console.log('input.value', input.value);
+        span.textContent = '{{ cart.currency.symbol }}' + input.value;
+      });
+    }
+  });
+</script>

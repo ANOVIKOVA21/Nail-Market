@@ -1,0 +1,130 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+{% if customer %}
+  <script>
+    const expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+    document.cookie = `customer_id={{ customer.id }}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+  </script>
+  <div class="color-{{ section.settings.color_scheme }} gradient isolate">
+    <div class="customer account section-{{ section.id }}-padding">
+      <aside class="account-sidebar">
+        <nav>
+          <ul class="account-tabs">
+            <li>
+              <a href="#account" class="tab-link active">{{ 'customer.account.title' | t }}</a>
+            </li>
+            <li>
+              <a href="#loyalty" class="tab-link">{{ 'customer.loyalty.title' | t }}</a>
+            </li>
+            <li>
+              <a href="#orders" class="tab-link">{{ 'customer.orders.title' | t }}</a>
+            </li>
+            <li>
+              <a href="#offers" class="tab-link">{{ 'customer.offers.title' | t }}</a>
+            </li>
+            <li>
+              <a href="#cart" class="tab-link">{{ 'customer.cart.title' | t }}</a>
+            </li>
+            <li>
+              <a href="#wishlist" class="tab-link">{{ 'customer.wishlist.title' | t }}</a>
+            </li>
+            <li>
+              <a href="#reviews" class="tab-link">{{ 'customer.reviews.title' | t }}</a>
+            </li>
+            <li>
+              <a href="{{ routes.account_logout_url }}" class="account__logout">{{ 'customer.log_out' | t }}</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      {% render 'account-tab-account-info' %}
+      {% render 'account-tab-loyalty' %}
+      {% render 'account-tab-orders' %}
+      {% render 'account-tab-offers' %}
+      {% render 'account-tab-cart' %}
+      {% render 'account-tab-wishlist' %}
+      {% render 'account-tab-reviews' %}
+    </div>
+  </div>
+{% endif %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.tab-link').forEach(function (tab) {
+      tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelectorAll('.tab-link').forEach((t) => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach((c) => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelector(tab.getAttribute('href')).classList.add('active');
+        document.querySelector('.account-sidebar').classList.remove('menu-opening');
+      });
+    });
+
+    document.querySelectorAll('.account__top-tabs').forEach(function (topTabs) {
+      topTabs.querySelectorAll('.top-tab-link').forEach(function (tab) {
+        tab.addEventListener('click', function (e) {
+          e.preventDefault();
+          topTabs.querySelectorAll('.top-tab-link').forEach((t) => t.classList.remove('active'));
+          topTabs.parentElement.querySelectorAll('.top-tab-content').forEach((c) => c.classList.remove('active'));
+          tab.classList.add('active');
+          topTabs.parentElement.querySelector(tab.getAttribute('href')).classList.add('active');
+        });
+      });
+    });
+  });
+</script>
+{{ 'wishlist.js' | asset_url | script_tag }}
+{% schema %}
+{
+  "name": "t:sections.main-account.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,91 @@
+.custom-predictive-search {
+  grid-area: search;
+}
+
+.search-form__input-group {
+  display: flex;
+  justify-self: center;
+  width: 100%;
+}
+
+.search-form__input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-form__input {
+  background: inherit;
+  border: 1px solid #DCDCDC;
+  color: #888888;
+  padding: 1.5rem 0.8rem 1.5rem 1.5rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.search-form__input:hover {
+  border: 1px solid #989898;
+}
+
+.search-form__input:focus-visible {
+  border: 1px solid #989898;
+  outline: none;
+  box-shadow: none;
+}
+
+.search-form__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search__button {
+  background: #F4F4F4;
+  border: none;
+  width: 4.4rem;
+  color: #888888;
+  cursor: pointer;
+}
+
+.search-form__input-group:focus-within .search__button {
+  border: 1px solid #989898;
+  background: #DCDCDC;
+  color: #5D5D5D;
+}
+
+.search-form__input-wrapper:focus-within .reset__button {
+  display: inline-flex;
+}
+
+.reset__button {
+  display: none;
+  position: absolute;
+  right: 5%;
+  top: 30%;
+  border: none;
+  cursor: pointer;
+}
+
+.search__button:hover .icon,
+.reset__button:hover .icon {
+  transform: scale(1.07);
+}
+
+.search__button .icon {
+  height: 1.8rem;
+  width: 1.8rem;
+}
+
+.reset__button .icon.icon-close {
+  height: 1.8rem;
+  width: 1.8rem;
+  stroke-width: 0.1rem;
+}
+
+/* Remove extra spacing for search inputs in Safari */
+input::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+@media screen and (min-width: 990px) {
+  .search-form__input-group {
+    justify-self: start;
+  }
+}

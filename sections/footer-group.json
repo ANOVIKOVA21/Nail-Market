@@ -1,0 +1,71 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "image_tkk7nc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/NM_LOGO_Black.svg",
+            "image_width": 200,
+            "alignment": "center",
+            "full_width_img": true
+          }
+        },
+        "link_list_fBnjc7": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>Category<\/strong>",
+            "menu": "categories-menu"
+          }
+        },
+        "link_list_g9y4dE": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>Menu<\/strong>",
+            "menu": "footer"
+          }
+        },
+        "link_list_VQTpqD": {
+          "type": "link_list",
+          "settings": {
+            "heading": "<strong>Legal Information<\/strong>",
+            "menu": "legal-information"
+          }
+        },
+        "brand_information_f3Je8C": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": false
+          }
+        }
+      },
+      "block_order": [
+        "image_tkk7nc",
+        "link_list_fBnjc7",
+        "link_list_g9y4dE",
+        "link_list_VQTpqD",
+        "brand_information_f3Je8C"
+      ],
+      "settings": {
+        "color_scheme": "scheme-bb011c53-9c72-4e3f-bd6c-77ca0827bff5",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_policy": false,
+        "margin_top": 0,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

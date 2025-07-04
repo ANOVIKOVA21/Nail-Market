@@ -1,0 +1,33 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        "{background-color: #f4f4f4;}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 4,
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391"
+      }
+    },
+    "faq_global_RrVE3T": {
+      "type": "faq-global",
+      "name": "FAQ Section",
+      "settings": {
+        "background_color": "#f4f4f4",
+        "border_color": "#e1e1e1",
+        "text_color": "#333333",
+        "active_color": "#000000",
+        "item_header_bg": "#f4f4f4",
+        "content_width": 1200,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq_global_RrVE3T"
+  ]
+}

@@ -1,0 +1,979 @@
+{{ 'product-reviews.css' | asset_url | stylesheet_tag }}
+{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<section class="product-reviews-section gradient color-{{ section.settings.color_scheme }}">
+  {%- assign reviews = product.metafields['app--261195431937'].reviews.value -%}
+  {% assign reviews_count = 0 %}
+  {% assign reviews_rating_average = 0.0 %}
+
+  {% if reviews %}
+    {% for rw in reviews %}
+      {% assign reviews_count = reviews_count | plus: 1 %}
+      {% assign reviews_rating_average = reviews_rating_average | plus: rw.rating %}
+    {% endfor %}
+    {% assign reviews_rating_average = reviews_rating_average | divided_by: reviews_count | round: 2 %}
+  {% endif %}
+  {%- liquid
+    assign questions = product.metafields['app--261195431937'].questions.value
+    assign questions_count = 0
+    if questions
+      for q in questions
+        assign questions_count = questions_count | plus: 1
+      endfor
+    endif
+  -%}
+  <div class="review-layout">
+    <!-- Left: Product Image -->
+    <div class="review-image">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0701/4177/1931/files/e6099b0f3250d1b80220aa4392eb677184c6b5fd_1.png?v=1751283932"
+        alt="{{ product.title }}"
+        width="680"
+        height="639"
+      >
+    </div>
+
+    <!-- Right: Reviews Content -->
+    <div class="review-content">
+      <!-- Rating Summary -->
+      <div class="rating-summary">
+        <div class="rating-score">
+          {% if reviews_count > 0 %}
+            <span class="rating-value">{{ reviews_rating_average }}</span>
+            <div class="review-stars">
+              {%- for i in (1..5) -%}
+                <span class="star{% if i <= reviews_rating_average %} star--active{% endif %}">&#9733;</span>
+              {%- endfor -%}
+            </div>
+            <p class="rating-count">{{ 'products.reviews.based_on_reviews' | t: count: reviews_count }}</p>
+          {% else %}
+            <span class="rating-value">0</span>
+            <div class="review-stars">
+              {%- for i in (1..5) -%}
+                <span class="star">&#9733;</span>
+              {%- endfor -%}
+            </div>
+            <p class="rating-count">{{ 'products.reviews.no_reviews_yet' | t }}</p>
+          {% endif %}
+        </div>
+        {% if reviews_count > 0 %}
+          <div class="review-controls">
+            <span class="review-controls__count">
+              {{- reviews_count }}
+              {{ 'products.reviews.reviews' | t -}}
+            </span>
+
+            <div class="review-controls__buttons">
+              <menu-drawer
+                class="mobile-facets__wrapper"
+                data-breakpoint="mobile"
+              >
+                <details class="mobile-facets__disclosure disclosure-has-popup">
+                  <summary class="btn-filter focus-offset">
+                    <span class="button-label">{{ 'products.facets.filter_button' | t }}</span>
+                    <span class="svg-wrapper">
+                      {{- 'icon-plus.svg' | inline_asset_content -}}
+                    </span>
+                    <span tabindex="0" class="mobile-facets__close">
+                      <span class="svg-wrapper">
+                        {{- 'icon-close.svg' | inline_asset_content -}}
+                      </span></span
+                    >
+                  </summary>
+                  <facet-filters-form>
+                    <form id="FacetFiltersFormMobile" class="mobile-facets">
+                      <div class="mobile-facets__inner gradient">
+                        <div class="mobile-facets__header">
+                          <div class="mobile-facets__header-inner">
+                            <h2 class="mobile-facets__heading">
+                              {{ 'products.facets.filter_button' | t }}
+                            </h2>
+                          </div>
+                        </div>
+                        <div
+                          id="FacetsWrapperMobile"
+                          class="mobile-facets__main has-submenu gradient"
+                        >
+                          <details
+                            id="customer-rating"
+                            class="mobile-facets__details js-filter"
+                          >
+                            <summary class="mobile-facets__summary focus-inset">
+                              <div>
+                                <span>{{ 'products.reviews.filter.by_rating' | t }}</span>
+                                <span class="mobile-facets__caret">
+                                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                                </span>
+                              </div>
+                            </summary>
+                            <ul
+                              class="facets-layout facets-layout-list facets-layout-list--text mobile-facets__list list-unstyled"
+                              role="list"
+                            >
+                              {%- for i in (1..5) -%}
+                                {% assign rating = 6 | minus: i %}
+                                <li class="mobile-facets__item list-menu__item">
+                                  <label for="rating-{{ rating }}" class="mobile-facets__label">
+                                    <input
+                                      class="mobile-facets__checkbox"
+                                      type="checkbox"
+                                      name="rating"
+                                      value="{{ rating }}"
+                                      id="rating-{{ rating }}"
+                                    >
+                                    <span class="mobile-facets__highlight"></span>
+                                    {{- 'square.svg' | inline_asset_content -}}
+                                    {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                                    <div class="review-stars">
+                                      {%- for star in (1..5) -%}
+                                        <span class="star{% if star <= rating %} star--active{% endif %}">&#9733;</span>
+                                      {%- endfor -%}
+                                    </div>
+                                  </label>
+                                </li>
+                              {%- endfor -%}
+                            </ul>
+                          </details>
+                          <details
+                            id="photo"
+                            class="mobile-facets__details js-filter"
+                          >
+                            <summary class="mobile-facets__summary focus-inset">
+                              <div>
+                                <span>{{ 'products.reviews.filter.by_photo' | t }}</span>
+                                <span class="mobile-facets__caret">
+                                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                                </span>
+                              </div>
+                            </summary>
+                            <ul
+                              class="facets-layout facets-layout-list facets-layout-list--text mobile-facets__list list-unstyled"
+                              role="list"
+                            >
+                              <li class="mobile-facets__item list-menu__item">
+                                <label class="facets__label mobile-facets__label" for="filter-with-photo">
+                                  <input
+                                    type="checkbox"
+                                    name="filter-photo"
+                                    value="with"
+                                    class="mobile-facets__checkbox"
+                                    id="filter-with-photo"
+                                  >
+                                  <span class="mobile-facets__highlight"></span>
+                                  {{- 'square.svg' | inline_asset_content -}}
+                                  {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                                  {{ 'products.reviews.filter.with_photo' | t }}
+                                </label>
+                              </li>
+                              <li class="mobile-facets__item list-menu__item">
+                                <label class="facets__label mobile-facets__label" for="filter-without-photo">
+                                  <input
+                                    type="checkbox"
+                                    name="filter-photo"
+                                    value="without"
+                                    class="mobile-facets__checkbox"
+                                    id="filter-without-photo"
+                                  >
+                                  <span class="mobile-facets__highlight"></span>
+                                  {{- 'square.svg' | inline_asset_content -}}
+                                  {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                                  {{ 'products.reviews.filter.without_photo' | t }}
+                                </label>
+                              </li>
+                            </ul>
+                          </details>
+                          <div class="mobile-facets__footer">
+                            <button
+                              type="button"
+                              class="button button--primary mobile-facets__apply"
+                            >
+                              {{ 'products.facets.apply' | t }}
+                            </button>
+                            <button
+                              type="button"
+                              class="button mobile-facets__clear"
+                            >
+                              {{- 'products.facets.clear' | t -}}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </facet-filters-form>
+                </details>
+              </menu-drawer>
+              <form id="SortReviewsForm">
+                <details>
+                  <summary class="btn-sort">
+                    <span class="button-label">{{ 'products.facets.sort_button' | t }}</span>
+                    <span class="svg-wrapper">
+                      {{- 'icon-plus.svg' | inline_asset_content -}}
+                    </span>
+                  </summary>
+                  <div class="custom-select">
+                    <h3 class="custom-select__title">{{ 'products.facets.sort_by_label' | t }}</h3>
+                    <input
+                      type="radio"
+                      name="sort_by"
+                      id="sort_resent"
+                      value="created-descending"
+                      checked
+                    >
+                    <label for="sort_resent">{{ 'products.facets.sort.most_resent' | t }}</label>
+
+                    <input
+                      type="radio"
+                      name="sort_by"
+                      id="sort_oldest"
+                      value="created-ascending"
+                    >
+                    <label for="sort_oldest">{{ 'products.facets.sort.oldest' | t }}</label>
+                    <input
+                      type="radio"
+                      name="sort_by"
+                      id="sort_photos"
+                      value="photos"
+                    >
+                    <label for="sort_photos">{{ 'products.facets.sort.photos' | t }}</label>
+                  </div>
+                </details>
+              </form>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Tabs -->
+      <div class="review-tabs">
+        <div style="display: flex; gap: 1.2rem;">
+          <a href="#reviews" class="tab-link active">{{ 'products.reviews.tabs.reviews' | t }} ({{ reviews_count }})</a>
+          <a href="#questions" class="tab-link">{{ 'products.reviews.tabs.questions' | t }}({{ questions_count }})</a>
+        </div>
+        <div class="review-buttons">
+          {% if customer %}
+            <button
+              class="btn-write-review button button-dark"
+              data-product-id="{{ product.id }}"
+              data-product-title="{{ product.title }}"
+              data-product-image="{{ product.featured_image | image_url: width: 64, height: 64, crop: 'center' }}"
+              data-product-url="{{ product.url }}"
+            >
+              {{ 'customer.orders.write_review' | t }}
+            </button>
+          {% else %}
+            <a href="/account/login?return_url={{ product.url }}" class="button button-dark">
+              {{ 'customer.orders.write_review' | t }}
+            </a>
+          {% endif %}
+        </div>
+        <div class="questions-buttons hidden">
+          {% if customer %}
+            <button class="btn-ask button button-dark">
+              {{ 'customer.questions.ask' | t }}
+            </button>
+            {% render 'question-form', product_id: product.id %}
+          {% else %}
+            <a href="/account/login?return_url={{ product.url }}" class="button button-dark">
+              {{ 'customer.questions.ask' | t }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+      <div id="reviews" class="tab-content active">
+        <!-- Review List -->
+        <div class="review-list">
+          {% if reviews_count > 0 %}
+            {% for review in reviews %}
+              <div
+                class="review-item"
+                data-date="{{ review.created_at }}"
+                data-has-photo="{% if review.images.value%}true{% else %}false{% endif %}"
+                {% if forloop.index > 3 %}
+                  style="display: none;"
+                {% endif %}
+              >
+                <div class="review-body">
+                  <div class="review-header">
+                    <div class="review-customer">
+                      <div class="review-avatar">{{ review.customer_name | slice: 0 | upcase }}</div>
+                      <p class="review-name">
+                        <strong>{{ review.customer_name }}</strong>
+                      </p>
+                    </div>
+
+                    <time datetime="{{review.created_at}}" class="review-date">{{ review.created_at }}</time>
+                  </div>
+                  <div class="review-stars">
+                    {%- for i in (1..5) -%}
+                      <span class="star{% if i <= review.rating %} star--active{% endif %}">&#9733;</span>
+                    {%- endfor -%}
+                  </div>
+                  <div class="review-body">
+                    <p class="review-title">{{ review.title }}</p>
+                    <p class="review-text">
+                      {{ review.content }}
+                    </p>
+                    {%- if review.images.value -%}
+                      <div class="review-images">
+                        {%- for image in review.images.value -%}
+                          <img
+                            src="{{ image | image_url: width: 100, height: 100, crop: 'center' }}"
+                            alt="Review image {{ forloop.index }}"
+                            class="review-image-thumbnail"
+                            data-review-index="{{ forloop.parentloop.index0 }}"
+                            data-image-index="{{ forloop.index0 }}"
+                            data-full-size-src="{{ image | image_url }}"
+                            loading="lazy"
+                            width="80"
+                            height="80"
+                          >
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="no-reviews-message">
+              <p>{{ 'products.reviews.no_reviews_message' | t }}</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Show More Button -->
+        {% if reviews_count > 3 %}
+          <button class="btn-show-more button button-bordered">{{ 'products.facets.show_more' | t }}</button>
+        {% endif %}
+      </div>
+      <!-- questions list -->
+      <div id="questions" class="tab-content">
+        <ul class="questions-list" data-product-id="{{ product.id }}">
+          {% if questions_count > 0 %}
+            {% for question in questions %}
+              <li class="question-item">
+                <div class="question-customer">
+                  <div class="question-avatar">{{ question.customer_name | slice: 0 | upcase }}</div>
+                  <p class="question-name">
+                    <strong>{{ question.customer_name }}</strong>
+                  </p>
+                  <time datetime="{{question.created_at}}" class="question-date">{{ question.created_at }}</time>
+                </div>
+                <p class="question-content">{{ question.content }}</p>
+                {% if question.response %}
+                  <div class="question-response">
+                    <span class="svg-wrapper">
+                      {{- 'icon-return.svg' | inline_asset_content -}}
+                    </span>
+                    <div class="response-header">
+                      <p><strong>Nail Market</strong></p>
+                      <time datetime="{{question.response_at}}" class="response-date">{{ question.response_at }}</time>
+                    </div>
+                    <p>{{ question.response }}</p>
+                  </div>
+                {% endif %}
+              </li>
+            {% endfor %}
+          {% else %}
+            <div class="no-reviews-message">
+              <p>{{ 'customer.questions.no_questions_message' | t }}</p>
+            </div>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Review Form Modal -->
+<div id="review-form-backdrop" class="review-form-backdrop" style="display: none;"></div>
+{% render 'review-form' %}
+
+<!-- Lightbox for review images -->
+<div id="review-image-lightbox" class="lightbox" style="display: none;">
+  <span class="lightbox-close">&times;</span>
+  <span class="lightbox-nav lightbox-prev">&#10094;</span>
+  <span class="lightbox-nav lightbox-next">&#10095;</span>
+  <div class="lightbox-content">
+    <img id="lightbox-image" src="" alt="">
+  </div>
+</div>
+
+<style>
+  .review-form__product {
+    display: none;
+  }
+
+  .review-images {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+  }
+
+  .review-image-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid #eee;
+    transition: transform 0.2s;
+  }
+
+  .review-image-thumbnail:hover {
+    transform: scale(1.05);
+  }
+
+  .lightbox {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-content {
+    position: relative;
+    text-align: center;
+  }
+
+  #lightbox-image {
+    max-width: 50vw;
+    max-height: 50vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  .lightbox-prev {
+    left: 20px;
+  }
+
+  .lightbox-next {
+    right: 20px;
+  }
+
+  /* Review Form Modal Styles */
+  .review-form-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+  }
+
+  .review-form__box {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background: #efefef;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .review-form__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .review-form__back-button {
+    cursor: pointer;
+    margin-right: 15px;
+  }
+
+  .review-form__product {
+    display: none; /* not needed right now */
+    align-items: center;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .review-form__product-img {
+    margin-right: 15px;
+    border-radius: 4px;
+  }
+
+  .review-form__submit {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    .review-form__box {
+      width: 95%;
+      padding: 15px;
+    }
+  }
+
+  .review-title {
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    font-size: 1.8rem;
+  }
+
+  .review-text {
+    margin: 0 0 15px 0;
+    font-size: 1.6rem;
+  }
+
+  /* Show More Button Animation */
+  .btn-show-more {
+    transition: all 0.3s ease;
+  }
+
+  .btn-show-more.loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  /* Review Item Animation */
+  .review-item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .review-item[style*='display: none'] {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .review-item[style*='display: block'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* No reviews message */
+  .no-reviews-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.6rem;
+    color: #666;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Show/hide tabs
+    document.querySelectorAll('.tab-link').forEach(function (tab) {
+    tab.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelectorAll('.tab-link').forEach((t) => t.classList.remove('active'));
+      document
+        .querySelectorAll('.tab-content')
+        .forEach((c) => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(tab.getAttribute('href')).classList.add('active');
+
+      const reviewControls = document.querySelector('.review-controls__buttons');
+      const reviewButtons = document.querySelector('.review-buttons');
+      const questionsButtons = document.querySelector('.questions-buttons');
+    
+      if (tab.getAttribute('href') === '#reviews') {
+        reviewControls && reviewControls.classList.remove('hidden');
+       reviewButtons && reviewButtons.classList.remove('hidden');
+       questionsButtons && questionsButtons.classList.add('hidden');
+      } else if (tab.getAttribute('href') === '#questions') {
+        reviewControls && reviewControls.classList.add('hidden');
+        reviewButtons && reviewButtons.classList.add('hidden');
+        questionsButtons && questionsButtons.classList.remove('hidden');
+      }
+    });
+  });
+    //Open question form
+   const btnAsk = document.querySelector('.btn-ask');
+    if (btnAsk) {
+      btnAsk.addEventListener('click', () =>
+      document.querySelector('.question-form__box').showModal()
+    );
+    }
+
+    const backBtn = document.querySelector('.review-form__back-button');
+    if (backBtn) {
+      backBtn.addEventListener('click', function() {
+      document.getElementById('review-form-backdrop').style.display = 'none';
+      document.querySelector('.review-form__box').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      });
+    }
+
+    // Show More Functionality
+    const showMoreBtn = document.querySelector('.btn-show-more');
+    const reviewList = document.querySelector('.review-list');
+    let reviewItems = Array.from(reviewList.querySelectorAll('.review-item'));
+    function showFirstThreeReviews() {
+      const visible = getVisibleReviews();
+      visible.forEach((item,index) => {
+      item.style.display = index < 3 ? '' : 'none';
+    });
+    }
+    if (reviewItems.length > 3) {
+      showFirstThreeReviews();
+    }
+    let showingAll = false;
+
+    function updateReviewItems() {
+      reviewItems = Array.from(reviewList.querySelectorAll('.review-item'));
+    }
+    function getVisibleReviews() {
+  return reviewItems.filter(item => item.style.display !== 'none');
+}
+    if (showMoreBtn && reviewItems.length > 3) {
+      
+      showMoreBtn.addEventListener('click', function() {
+         updateReviewItems();
+        if (showingAll) {
+          // Hide all except first 3 
+          showFirstThreeReviews();
+          showMoreBtn.textContent = '{{ "products.facets.show_more" | t }}';
+        } else {
+          // Show all reviews
+            reviewItems.forEach(item => {
+            item.style.display = 'block';
+          }); 
+          showMoreBtn.textContent = '{{ "products.facets.show_less" | t }}';
+        }
+        
+        showingAll = !showingAll;
+      });
+    } else if (showMoreBtn) {
+      // Hide button if there are 3 or fewer reviews
+      showMoreBtn.style.display = 'none';
+    }
+
+    // Only initialize sorting/filtering if there are reviews
+    {% if reviews_count > 0 %}
+      // Existing sorting functionality
+      const sortRadios = document.querySelectorAll('input[name="sort_by"]');
+      const ratingCheckboxes = document.querySelectorAll('input[name="rating"]');
+      const photoCheckboxes = document.querySelectorAll('input[name="filter-photo"]');
+      if (!reviewList) return;
+
+      function sortReviews(sortType) {
+        const reviews = Array.from(reviewList.querySelectorAll('.review-item'));
+        let sorted;
+
+        if (sortType === 'created-descending') {
+          sorted = reviews.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
+        } else if (sortType === 'created-ascending') {
+          sorted = reviews.sort((a, b) => new Date(a.dataset.date) - new Date(b.dataset.date));
+        } else if (sortType === 'photos') {
+          sorted = reviews.sort((a, b) => {
+            const hasPhotoA = a.dataset.hasPhoto === 'true' ? 1 : 0;
+            const hasPhotoB = b.dataset.hasPhoto === 'true' ? 1 : 0;
+            if (hasPhotoB !== hasPhotoA) {
+              return hasPhotoB - hasPhotoA;
+            }
+            return new Date(b.dataset.date) - new Date(a.dataset.date);
+          });
+        } else {
+          sorted = reviews;
+        }
+        sorted.forEach((item) => reviewList.appendChild(item));
+        updateReviewItems();
+        filterReviews();
+        // After sorting, reset the show more state
+        if (showMoreBtn && !showingAll) {
+          showFirstThreeReviews();
+        }
+      }
+
+      sortRadios.forEach((radioInput) => {
+        radioInput.addEventListener('change', function () {
+          if (this.checked) {
+            sortReviews(this.value);
+            const details = this.closest('details');
+            if (details && details.open) {
+              details.open = false;
+            }
+          }
+        });
+      });
+
+      const checked = document.querySelector('input[name="sort_by"]:checked');
+      if (checked) sortReviews(checked.value);
+
+      // Existing filtering functionality
+      function filterReviews() {
+        const selectedRatings = Array.from(ratingCheckboxes)
+          .filter((checkbox) => checkbox.checked)
+          .map((checkbox) => checkbox.value);
+
+        const selectedPhoto = Array.from(photoCheckboxes)
+          .filter((checkbox) => checkbox.checked)
+          .map((checkbox) => checkbox.value);
+
+        reviewItems.forEach((item) => {
+          const itemRating = item.querySelectorAll('.star.star--active').length.toString();
+          const itemHasPhoto = item.dataset.hasPhoto === 'true';
+
+          // Filter by rating
+          let showByRating = true;
+          if (selectedRatings.length > 0) {
+            showByRating = selectedRatings.includes(itemRating);
+          }
+
+          let showByPhoto = true;
+          if (selectedPhoto.length === 1) {
+            if (selectedPhoto[0] === 'with') showByPhoto = itemHasPhoto;
+            if (selectedPhoto[0] === 'without') showByPhoto = !itemHasPhoto;
+          } else if (selectedPhoto.length === 0) {
+            showByPhoto = true;
+          } else if (selectedPhoto.length === 2) {
+            showByPhoto = true;
+          }
+
+          item.style.display = showByRating && showByPhoto ? '' : 'none';
+        });
+         updateReviewItems();
+        // Update show more button visibility after filtering
+         const visibleReviews =getVisibleReviews();
+        if (showMoreBtn) {
+          showMoreBtn.style.display = visibleReviews.length > 3 ? '' : 'none';
+          if (!showingAll) {
+            showFirstThreeReviews();
+          }
+        }
+      }
+
+      ratingCheckboxes.forEach((checkbox) => checkbox.addEventListener('change', filterReviews));
+      photoCheckboxes.forEach((checkbox) => checkbox.addEventListener('change', filterReviews));
+
+      filterReviews();
+
+      const clearBtn = document.querySelector('.mobile-facets__clear');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', function () {
+          document.querySelectorAll('input[name="rating"]').forEach((checkbox) => (checkbox.checked = false));
+          document.querySelectorAll('input[name="filter-photo"]').forEach((checkbox) => (checkbox.checked = false));
+          filterReviews();
+        });
+      }
+    {% endif %}
+
+    // Handle write review button click
+    document.querySelectorAll('.btn-write-review').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (!this.dataset.productId) return;
+        
+        const backdrop = document.getElementById('review-form-backdrop');
+        const form = document.querySelector('.review-form__box');
+        const formImg = form.querySelector('.review-form__product-img');
+        const formProductId = form.querySelector('input[name="productId"]');
+        
+        // Set form data
+        formProductId.value = this.dataset.productId;
+        formImg.src = this.dataset.productImage;
+        formImg.alt = this.dataset.productTitle;
+        form.querySelector('.review-form__product-title').textContent = this.dataset.productTitle;
+        form.querySelector('.review-form__product').href = this.dataset.productUrl;
+        
+        // Show the backdrop and form
+        backdrop.style.display = 'block';
+        form.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Close when clicking backdrop
+        backdrop.addEventListener('click', function() {
+          backdrop.style.display = 'none';
+          form.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        });
+      });
+    });
+
+    // Close review form when clicking back button
+    document.querySelector('.review-form__back-button')?.addEventListener('click', function() {
+      document.getElementById('review-form-backdrop').style.display = 'none';
+      document.querySelector('.review-form__box').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('review-image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-image');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+    
+    let currentImageIndex = 0;
+    let allReviewImages = [];
+    
+    // Collect all review images data
+    document.querySelectorAll('.review-image-thumbnail').forEach((thumbnail, index) => {
+      allReviewImages.push({
+        reviewIndex: thumbnail.dataset.reviewIndex,
+        imageIndex: thumbnail.dataset.imageIndex,
+        src: thumbnail.dataset.fullSizeSrc,
+        alt: thumbnail.alt
+      });
+    });
+    
+    // Function to calculate and set image dimensions
+    function setLightboxImageDimensions(imgElement, imgSrc) {
+      const tempImg = new Image();
+      tempImg.src = imgSrc;
+      tempImg.onload = function() {
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        const maxDisplayWidth = viewportWidth * 0.5;
+        const maxDisplayHeight = viewportHeight * 0.5;
+        
+        let displayWidth = tempImg.naturalWidth;
+        let displayHeight = tempImg.naturalHeight;
+        
+        // Check if width exceeds maximum
+        if (displayWidth > maxDisplayWidth) {
+          const ratio = maxDisplayWidth / displayWidth;
+          displayWidth = maxDisplayWidth;
+          displayHeight *= ratio;
+        }
+        
+        // Check if height still exceeds maximum after width adjustment
+        if (displayHeight > maxDisplayHeight) {
+          const ratio = maxDisplayHeight / displayHeight;
+          displayHeight = maxDisplayHeight;
+          displayWidth *= ratio;
+        }
+        
+        // Apply dimensions
+        imgElement.style.width = `${displayWidth}px`;
+        imgElement.style.height = `${displayHeight}px`;
+        imgElement.src = imgSrc;
+      };
+    }
+    
+    // Open lightbox when thumbnail is clicked
+    document.querySelectorAll('.review-image-thumbnail').forEach((thumbnail, index) => {
+      thumbnail.addEventListener('click', function() {
+        currentImageIndex = index;
+        const fullSizeSrc = this.dataset.fullSizeSrc;
+        setLightboxImageDimensions(lightboxImg, fullSizeSrc);
+        lightboxImg.alt = this.alt;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close lightbox
+    closeBtn.addEventListener('click', function() {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+    
+    // Navigate between images
+    function showImage(direction) {
+      if (direction === 'prev') {
+        currentImageIndex = (currentImageIndex - 1 + allReviewImages.length) % allReviewImages.length;
+      } else {
+        currentImageIndex = (currentImageIndex + 1) % allReviewImages.length;
+      }
+      
+      const newImage = allReviewImages[currentImageIndex];
+      setLightboxImageDimensions(lightboxImg, newImage.src);
+      lightboxImg.alt = newImage.alt;
+    }
+    
+    prevBtn.addEventListener('click', function() {
+      showImage('prev');
+    });
+    
+    nextBtn.addEventListener('click', function() {
+      showImage('next');
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') {
+          lightbox.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        } else if (e.key === 'ArrowLeft') {
+          showImage('prev');
+        } else if (e.key === 'ArrowRight') {
+          showImage('next');
+        }
+      }
+    });
+    
+    // Close when clicking outside image
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (lightbox.style.display === 'flex' && lightboxImg.src) {
+        setLightboxImageDimensions(lightboxImg, lightboxImg.src);
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product reviews section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product reviews section",
+      "category": "Reviews"
+    }
+  ]
+}
+{% endschema %}

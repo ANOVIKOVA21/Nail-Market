@@ -1,0 +1,144 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391"
+      }
+    },
+    "policy_text_YaQANR": {
+      "type": "policy-text",
+      "blocks": {
+        "anchor_section_dmGkJN": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "introduction-section",
+            "link_text": "",
+            "heading": "",
+            "content": "<p>Your privacy is important to us. This policy outlines what information we collect, how we use it, and how we protect your data when you interact with our website and services.<\/p>"
+          }
+        },
+        "anchor_section_P8pc3E": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "eligibility",
+            "link_text": "1. General Terms",
+            "heading": "1. General Terms",
+            "content": "<p>1.1. This Agreement constitutes a legally binding offer from [Store Name] to sell goods displayed on our website.<\/p><p>1.2. The purchase is considered accepted (contract concluded) when you place an order and make payment via our checkout process.<\/p><p>1.3. We reserve the right to modify these terms at any time without prior notice. Updates will be posted on this page.<\/p>"
+          }
+        },
+        "anchor_section_iwBAa4": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "how-we-use-your-data",
+            "link_text": "2. Products and Availability",
+            "heading": "2. Products and Availability",
+            "content": "<p>2.1. All products are described and priced as accurately as possible on our website.<\/p><p>2.2. Product availability is not guaranteed and may change at any time.<\/p><p>2.3. Colors and packaging may vary slightly due to monitor settings or supplier changes.<\/p>"
+          }
+        },
+        "anchor_section_UC4Jrn": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "how-we-protect-your-data",
+            "link_text": "3. Pricing and Payment",
+            "heading": "3. Pricing and Payment",
+            "content": "<p>3.1. All prices are listed in U.S. dollars (USD) unless otherwise stated.<\/p><p>3.2. We reserve the right to change prices at any time without prior notice.<\/p><p>3.3. Payment must be made at the time of purchase. We accept:<\/p><ul><li>Major credit\/debit cards (Visa, Mastercard, AmEx, Discover)<\/li><li>PayPal<\/li><li>Apple Pay \/ Google Pay<\/li><\/ul><p>3.4. All payments are processed securely. We do not store your credit card information.<\/p>"
+          }
+        },
+        "anchor_section_jHDwd4": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "cookies-article",
+            "link_text": "4. Order Processing and Shipping",
+            "heading": "4. Order Processing and Shipping",
+            "content": "<p>4.1. Orders are typically processed within 1–2 business days.<\/p><p>4.2. Shipping is available within the United States and select international destinations.<\/p><p>4.3. Delivery times vary based on location and carrier. Estimated delivery time is 2–6 business days within the U.S.<\/p><p>4.4. Once shipped, you will receive a tracking number via email.<\/p><p>4.5. We are not responsible for delays caused by shipping carriers or incorrect addresses provided at checkout.<\/p>"
+          }
+        },
+        "anchor_section_jwXEHX": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "sharing-your-data",
+            "link_text": "5. Returns and Exchanges",
+            "heading": "5. Returns and Exchanges",
+            "content": "<p>5.1. Our Return Policy is available Return Policy.<\/p><p>5.2. Due to the nature of cosmetic products, certain items (including opened nail products, liquids, gels, etc.) may not be eligible for return or exchange unless damaged or defective.<\/p><p>5.3. If your item arrives damaged, please contact us within 7 days of delivery with photos of the item and packaging.<\/p>"
+          }
+        },
+        "anchor_section_PjQ43F": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "your-rights",
+            "link_text": "6. Intellectual Property",
+            "heading": "6. Intellectual Property",
+            "content": "<p>All content on our website, including images, graphics, logos, product descriptions, and brand names, is the property of Nail Market USA and protected by applicable intellectual property laws. Unauthorized use is strictly prohibited.<\/p>"
+          }
+        },
+        "anchor_section_cnaHAg": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "policy-updates",
+            "link_text": "7. Limitation of Liability",
+            "heading": "7. Limitation of Liability",
+            "content": "<p>We are not liable for any indirect, incidental, or consequential damages that may result from the use or misuse of our products.\u2028 Our maximum liability is limited to the total amount paid for your order.<\/p>"
+          }
+        },
+        "anchor_section_yLThjK": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "privacy-terms-and-conditions",
+            "link_text": "8. Privacy",
+            "heading": "8. Privacy",
+            "content": "<p>Your privacy is important to us. Please refer to our [Privacy Policy] for details on how we collect, use, and protect your personal information.<\/p>"
+          }
+        },
+        "anchor_section_KcfBwH": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "governing-law",
+            "link_text": "9. Governing Law",
+            "heading": "9. Governing Law",
+            "content": "<p>This Agreement shall be governed by and construed in accordance with the laws of the State of [Insert State, e.g., California], United States, without regard to its conflict of law provisions.<\/p>"
+          }
+        },
+        "anchor_section_8KKU9R": {
+          "type": "anchor_section",
+          "settings": {
+            "anchor_id": "contact-us-privacy-terms-and-conditions",
+            "link_text": "10. Contact Us",
+            "heading": "10. Contact Us",
+            "content": "<p>If you have any questions regarding these terms or your order, please contact us at:<\/p><p><strong>Email: <\/strong><a href=\"mailto:nailmarketusa.info@gmail.com\" title=\"mailto:nailmarketusa.info@gmail.com\"><strong>nailmarketusa.info@gmail.com<\/strong><\/a><\/p><p><strong>Address:<\/strong> 1637 E17th St, Brooklyn, NY 11229<\/p><p><strong>Phone:<\/strong> +1 (929) 327-6636<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "anchor_section_dmGkJN",
+        "anchor_section_P8pc3E",
+        "anchor_section_iwBAa4",
+        "anchor_section_UC4Jrn",
+        "anchor_section_jHDwd4",
+        "anchor_section_jwXEHX",
+        "anchor_section_PjQ43F",
+        "anchor_section_cnaHAg",
+        "anchor_section_yLThjK",
+        "anchor_section_KcfBwH",
+        "anchor_section_8KKU9R"
+      ],
+      "name": "Anchor Navigation",
+      "settings": {
+        "nav_title": "Terms & Conditions",
+        "background_color": "#f4f4f4",
+        "heading_color": "#333333",
+        "link_color": "#666666",
+        "active_color": "#000000",
+        "content_width": 1200,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    }
+  },
+  "order": [
+    "main",
+    "policy_text_YaQANR"
+  ]
+}

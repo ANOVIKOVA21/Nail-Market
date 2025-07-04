@@ -1,0 +1,121 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>{{ product.vendor }}<\/strong>",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating_BQH3X3": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "rating_BQH3X3",
+        "price",
+        "variant_picker",
+        "buy_buttons",
+        "description"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "faq_4KWqjg": {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": {
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "title": "<strong>FAQ<\/strong>",
+        "heading_size": "h2",
+        "image": "shopify:\/\/shop_images\/d5bb7d2abd380eb19c2cb67479891d17ea0671e9_1.jpg",
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "button_label": "View All",
+        "button_link": "shopify:\/\/pages\/faq",
+        "button_style": "secondary",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "product_reviews_pMn4nJ": {
+      "type": "product-reviews",
+      "name": "Product reviews section",
+      "settings": {
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "<strong>WITH THIS PRODUCT BUY<\/strong>",
+        "heading_size": "h2",
+        "products_to_show": 6,
+        "columns_desktop": 4,
+        "columns_tablet": 2,
+        "enable_desktop_slider": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "color_scheme": "scheme-a219d90b-17c7-41fd-b7e3-769f3bf1b391",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq_4KWqjg",
+    "product_reviews_pMn4nJ",
+    "related-products"
+  ]
+}
